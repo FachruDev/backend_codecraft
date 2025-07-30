@@ -237,8 +237,6 @@ enum Robots {
 
 model SeoMetadata {
   id             Int      @id @default(autoincrement())
-  entityType     String
-  entityId       Int
   metaTitle      String
   metaDescription String
   ogTitle        String?
@@ -247,16 +245,18 @@ model SeoMetadata {
   ogType         String?
   canonicalUrl   String?
   robots         Robots?  @default(INDEX_FOLLOW)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
-  // Relation to Portfolio
+  // one to one relation to our model
   portfolioId   Int?       @unique
-  portfolio     Portfolio? @relation(fields: [portfolioId], references: [id])
+  portfolio     Portfolio? @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
   
   serviceId     Int?       @unique
-  service       Service?   @relation(fields: [serviceId], references: [id])
+  service       Service?   @relation(fields: [serviceId], references: [id], onDelete: Cascade)
 
   articleId     Int?       @unique
-  article       Article?   @relation(fields: [articleId], references: [id])
+  article       Article?   @relation(fields: [articleId], references: [id], onDelete: Cascade)
 }
 
 model WebSetting {
