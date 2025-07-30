@@ -14,10 +14,10 @@ export const createSeoMetadataSchema = z.object({
   metaDescription: z.string().min(1, 'Meta description wajib diisi'),
   ogTitle: z.string().optional(),
   ogDescription: z.string().optional(),
-  ogImage: z.string().url('Format URL OG Image tidak valid').optional(),
+  ogImage: z.url('Format URL OG Image tidak valid').optional(),
   ogType: z.string().optional(),
-  canonicalUrl: z.string().url('Format URL canonical tidak valid').optional(),
-  robots: z.nativeEnum(Robots).optional(),
+  canonicalUrl: z.url('Format URL canonical tidak valid').optional(),
+  robots: z.enum(Robots).optional(),
 
   // Foreign keys
   portfolioId: z.number().int().optional(),
@@ -38,10 +38,10 @@ export const updateSeoMetadataSchema = z.object({
   metaDescription: z.string().min(1, 'Meta description wajib diisi').optional(),
   ogTitle: z.string().optional(),
   ogDescription: z.string().optional(),
-  ogImage: z.string().url('Format URL OG Image tidak valid').optional(),
+  ogImage: z.url('Format URL OG Image tidak valid').optional(),
   ogType: z.string().optional(),
-  canonicalUrl: z.string().url('Format URL canonical tidak valid').optional(),
-  robots: z.nativeEnum(Robots).optional(),
+  canonicalUrl: z.url('Format URL canonical tidak valid').optional(),
+  robots: z.enum(Robots).optional(),
 
   // Foreign keys
   portfolioId: z.number().int().optional(),

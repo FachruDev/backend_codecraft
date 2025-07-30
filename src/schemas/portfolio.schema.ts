@@ -5,7 +5,7 @@ export const createPortfolioSchema = z.object({
   title: z.record(z.string(), z.string()),
   slogan: z.record(z.string(), z.string()),
   subtitle: z.record(z.string(), z.string()),
-  media: z.string().url('Format URL media tidak valid').min(1, 'URL media wajib diisi'),
+  media: z.url('Format URL media tidak valid').min(1, 'URL media wajib diisi'),
   content: z.record(z.string(), z.string()),
 });
 
@@ -14,7 +14,7 @@ export const updatePortfolioSchema = z.object({
   title: z.record(z.string(), z.string()).optional(),
   slogan: z.record(z.string(), z.string()).optional(),
   subtitle: z.record(z.string(), z.string()).optional(),
-  media: z.string().url('Format URL media tidak valid').min(1, 'URL media wajib diisi').optional(),
+  media: z.url('Format URL media tidak valid').min(1, 'URL media wajib diisi').optional(),
   content: z.record(z.string(), z.string()).optional(),
 });
 

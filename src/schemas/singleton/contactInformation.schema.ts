@@ -2,14 +2,14 @@ import { z } from 'zod';
 
 // Scheme for create new contactInformation.
 export const createContactInformationSchema = z.object({
-  email: z.string().email('Format email tidak valid').min(1, 'Email wajib diisi'),
+  email: z.email('Format email tidak valid').min(1, 'Email wajib diisi'),
   phoneNumber: z.string().min(1, 'Nomor handphone wajib diisi'),
   ourOffice: z.string().min(1, 'Alamat kantor wajib diisi'),
 });
 
 // Schema for updating existing contactInformation.
 export const updateContactInformationSchema = z.object({
-  email: z.string().email('Format email tidak valid').min(1, 'Email wajib diisi').optional(),
+  email: z.email('Format email tidak valid').min(1, 'Email wajib diisi').optional(),
   phoneNumber: z.string().min(1, 'Nomor handphone wajib diisi').optional(),
   ourOffice: z.string().min(1, 'Alamat kantor wajib diisi').optional(),
 });
