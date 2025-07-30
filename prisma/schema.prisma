@@ -4,24 +4,308 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")  
+  url      = env("DATABASE_URL")
 }
+
+// ----------------------------------------------------
+// -- Autentikasi dan Otorisasi (RBAC)
+// ----------------------------------------------------
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
-}
-
-model Post {
   id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  profile   String?
+  bio       String?
+  role      String?
+  password  String 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+<<<<<<< HEAD
   title     String
   content   String?
   published Boolean  @default(false)
   viewCount Int      @default(0)
   author    User?    @relation(fields: [authorId], references: [id])
   authorId  Int?
+=======
+  
+  // Relation to Group
+  groups Group[]
+  
+  // Relation to Article for author
+  articles Article[]
+}
+
+model Group {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relation to User
+  users       User[]
+  permissions Permission[]
+}
+
+model Permission {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique // Contoh: "article.create", "service.delete"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relation to Group
+  groups    Group[]
+}
+
+// ----------------------------------------------------
+// -- Landing Page
+// ----------------------------------------------------
+
+model HeroSection {
+  id    Int      @id @default(autoincrement())
+  title Json    @db.Json // l18n
+}
+
+model Achievement {
+  id       Int      @id @default(autoincrement())
+  title    String
+  subtitle Json    @db.Json // l18n
+}
+
+model Client {
+  id    Int      @id @default(autoincrement())
+  image String
+}
+
+model PortfolioSection {
+  id    Int      @id @default(autoincrement())
+  title Json    @db.Json // l18n
+}
+
+model Portfolio {
+  id          Int      @id @default(autoincrement())
+  title       Json    @db.Json // l18n
+  slogan      Json    @db.Json // l18n
+  subtitle    Json    @db.Json // l18n
+  media       String
+  content     Json    @db.Json // l18n
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relation to SEO
+  seoMetadata SeoMetadata?
+}
+
+// ----------------------------------------------------
+// -- Service
+// ----------------------------------------------------
+
+model ServiceSection {
+  id          Int      @id @default(autoincrement())
+  title       Json    @db.Json // l18n
+  subtitle    Json    @db.Json // l18n
+  description Json    @db.Json // l18n
+}
+
+model Service {
+  id          Int      @id @default(autoincrement())
+  menuName    Json    @db.Json // l18n
+  title       Json    @db.Json // l18n
+  slogan      Json    @db.Json // l18n
+  subtitle    Json    @db.Json // l18n
+  content     Json    @db.Json // l18n
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relation to ServiceProcess
+  processes   ServiceProcess[]
+  subServices SubService[]
+  excellences ServiceExcellence[]
+  qa          QA[]
+
+  // Relation to SEO
+  seoMetadata SeoMetadata?
+}
+
+model ServiceProcess {
+  id          Int      @id @default(autoincrement())
+  title       Json    @db.Json // l18n
+  subtitle    Json    @db.Json // l18n
+  
+  service     Service  @relation(fields: [serviceId], references: [id])
+  serviceId   Int
+}
+
+model SubService {
+  id          Int      @id @default(autoincrement())
+  title       Json    @db.Json // l18n
+  subtitle    Json    @db.Json // l18n
+  
+  service     Service  @relation(fields: [serviceId], references: [id])
+  serviceId   Int
+}
+
+model ServiceExcellence {
+  id          Int      @id @default(autoincrement())
+  title       Json    @db.Json // l18n
+  subtitle    Json    @db.Json // l18n
+  image       String
+  
+  service     Service  @relation(fields: [serviceId], references: [id])
+  serviceId   Int
+}
+
+model QA {
+  id          Int      @id @default(autoincrement())
+  question    Json    @db.Json // l18n
+  answer      Json    @db.Json // l18n
+  
+  service     Service  @relation(fields: [serviceId], references: [id])
+  serviceId   Int
+}
+
+// ----------------------------------------------------
+// -- About Us
+// ----------------------------------------------------
+
+model AboutOur {
+  id          Int      @id @default(autoincrement())
+  title       Json    @db.Json // l18n
+  subtitle    Json    @db.Json // l18n
+  description Json    @db.Json // l18n
+}
+
+model WhyWe {
+  id          Int      @id @default(autoincrement())
+  title       Json    @db.Json // l18n
+  subtitle    Json    @db.Json // l18n
+  description Json    @db.Json // l18n
+  image       String
+}
+
+model CallToAction {
+  id       Int      @id @default(autoincrement())
+  title    Json    @db.Json // l18n
+  subtitle Json    @db.Json // l18n
+}
+
+// ----------------------------------------------------
+// -- Article
+// ----------------------------------------------------
+
+enum ArticleStatus {
+  PUBLISHED
+  DRAFT
+  ARCHIVED
+}
+
+model ArticleCategory {
+  id        Int      @id @default(autoincrement())
+  title     Json    @db.Json // l18n
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  articles  Article[]
+}
+
+model Article {
+  id          Int           @id @default(autoincrement())
+  title       Json         @db.Json // l18n
+  subtitle    Json         @db.Json // l18n
+  coverImage  String
+  content     Json         @db.Json // l18n
+  rate        Int           @default(0) // 1-5 star rating
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  status      ArticleStatus
+  dateUpload  DateTime?
+  
+  // Relation to User
+  author User @relation(fields: [authorId], references: [id])
+  authorId Int
+  
+  category ArticleCategory @relation(fields: [categoryId], references: [id])
+  categoryId Int
+
+  // Relation to SEO
+  seoMetadata SeoMetadata?
+}
+
+// ----------------------------------------------------
+// -- SEO & Web Setting
+// ----------------------------------------------------
+
+enum Robots {
+  INDEX_FOLLOW
+  NOINDEX_FOLLOW
+  INDEX_NOFOLLOW
+  NOINDEX_NOFOLLOW
+}
+
+model SeoMetadata {
+  id             Int      @id @default(autoincrement())
+  metaTitle      String
+  metaDescription String
+  ogTitle        String?
+  ogDescription  String?
+  ogImage        String?
+  ogType         String?
+  canonicalUrl   String?
+  robots         Robots?  @default(INDEX_FOLLOW)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // one to one relation to our model
+  portfolioId   Int?       @unique
+  portfolio     Portfolio? @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
+  
+  serviceId     Int?       @unique
+  service       Service?   @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  articleId     Int?       @unique
+  article       Article?   @relation(fields: [articleId], references: [id], onDelete: Cascade)
+}
+
+model WebSetting {
+  id          Int      @id @default(autoincrement())
+  title       String
+  logo        String
+  favicon     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ----------------------------------------------------
+// -- Contact
+// ----------------------------------------------------
+
+model ContactSection {
+  id     Int      @id @default(autoincrement())
+  slogan Json    @db.Json // l18n
+}
+
+model ContactInformation {
+  id           Int      @id @default(autoincrement())
+  email        String
+  phoneNumber  String
+  ourOffice    String
+}
+
+model ContactForm {
+  id          Int      @id @default(autoincrement())
+  name        String
+  email       String
+  phoneNumber String
+  subject     String
+  message     String
+  createdAt   DateTime @default(now())
+}
+
+model SocialMedia {
+  id      Int      @id @default(autoincrement())
+  name    String
+  icon    String
+  link    String
+>>>>>>> development
 }

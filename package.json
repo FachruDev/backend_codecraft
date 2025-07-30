@@ -3,13 +3,18 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node src/index.ts"
+    "dev": "ts-node src/index.ts",
+    "postinstall": "npx prisma generate",
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate-dev": "npx prisma migrate dev"
   },
   "dependencies": {
     "@prisma/client": "6.9.0",
     "@prisma/extension-accelerate": "2.0.2",
+    "bcryptjs": "^3.0.2",
     "express": "5.1.0",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "zod": "^4.0.13"
   },
   "devDependencies": {
     "@types/express": "5.0.3",
