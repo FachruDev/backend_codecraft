@@ -211,7 +211,6 @@ backend_codecraft/
 │   │   └── middleware.ts
 │   ├── routes/
 │   │   ├── auth.ts
-│   │   └── example.ts
 │   ├── schemas/
 │   │   ├── auth.schema.ts
 │   │   └── user.schema.ts

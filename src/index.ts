@@ -14,7 +14,7 @@ import {
 
 // Routes
 import authRoutes from './routes/auth'
-import exampleRoutes from './routes/example'
+
 
 // Load env
 dotenv.config()
@@ -51,7 +51,6 @@ app.get('/health', (req, res) => {
 
 // API routes
 app.use('/api/auth', authRoutes)
-app.use('/api/example', exampleRoutes)
 
 // 404 handler
 app.use(notFound)
@@ -86,9 +85,6 @@ const server = app.listen(PORT, () => {
    GET  /api/auth/tokens - Get user's active tokens
    GET  /api/auth/me - Get current user profile
    GET  /api/auth/verify - Verify token
-   GET  /api/example/protected - Protected route example
-   GET  /api/example/admin-only - Admin only route example
-   POST /api/example/create-article - Create article (permission required)
    GET  /health - Health check
 ⭐️ See sample requests: https://github.com/prisma/prisma-examples/blob/latest/orm/express/README.md#using-the-rest-api`)
 })
