@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node src/index.ts"
+    "dev": "ts-node src/index.ts",
+    "build": "bun tsc", 
+    "start": "bun run dist/index.js"
   },
   "dependencies": {
     "@prisma/client": "6.9.0",
