@@ -8,7 +8,10 @@ import {
   RegisterInput,
   RefreshTokenInput
 } from '../schemas/auth.schema';
+import { Group, Permission, PrismaClient, Prisma } from '@prisma/client'
 import { z } from 'zod';
+
+const prisma = new PrismaClient();
 
 export class AuthController {
   /**
@@ -216,14 +219,14 @@ export class AuthController {
       return res.status(200).json({
         success: true,
         message: 'Token berhasil diambil',
-        data: tokens.map(token => ({
+        data: tokens.map((token: any) => ({
           id: token.id,
           userAgent: token.userAgent,
           ipAddress: token.ipAddress,
           issuedAt: token.issuedAt,
           expiresAt: token.expiresAt,
           createdAt: token.createdAt
-        }))
+        }))        
       });
     } catch (error) {
       return res.status(500).json({
@@ -245,16 +248,36 @@ export class AuthController {
           message: 'User tidak terautentikasi'
         });
       }
-
-      const user = await AuthService.getUserById(req.user.userId);
-      
+  
+      // Tipe eksplisit agar TypeScript tahu struktur relasi
+      type UserWithGroupsAndPermissions = Prisma.UserGetPayload<{
+        include: {
+          groups: {
+            include: {
+              permissions: true;
+            };
+          };
+        };
+      }>;
+  
+      const user: UserWithGroupsAndPermissions | null = await prisma.user.findUnique({
+        where: { id: req.user.userId },
+        include: {
+          groups: {
+            include: {
+              permissions: true,
+            },
+          },
+        },
+      });
+  
       if (!user) {
         return res.status(404).json({
           success: false,
           message: 'User tidak ditemukan'
         });
       }
-
+  
       return res.status(200).json({
         success: true,
         message: 'Profile berhasil diambil',
@@ -282,6 +305,7 @@ export class AuthController {
       });
     }
   }
+  
 
   /**
    * Verify token

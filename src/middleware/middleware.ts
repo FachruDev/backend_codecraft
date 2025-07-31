@@ -4,10 +4,13 @@ import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 import cors from 'cors';
 import { AuthService, TokenPayload } from '../services/authService';
+import { Group, Permission, PrismaClient, Prisma } from '@prisma/client';
 
 const WINDOWS_MS = parseInt(process.env.WINDOWS_MS_TIME || '900000', 10); 
 const WINDOWS_LIMIT = parseInt(process.env.WINDOWS_MS_LIMIT || '100', 10); 
 const IP_LIMIT = parseInt(process.env.IP_LIMIT || '10', 10);
+
+const prisma = new PrismaClient();
 
 // Extend Express Request to include user
 declare global {
@@ -147,8 +150,29 @@ export const requirePermission = (permissions: string[]) => {
         });
       }
 
-      // Get user with groups and permissions
-      const user = await AuthService.getUserById(req.user.userId);
+      // ✅ Definisi tipe user lengkap
+      type UserWithGroupsAndPermissions = Prisma.UserGetPayload<{
+        include: {
+          groups: {
+            include: {
+              permissions: true;
+            };
+          };
+        };
+      }>;
+
+      // ✅ Ambil user lengkap dari DB
+      const user = await prisma.user.findUnique({
+        where: { id: req.user.userId },
+        include: {
+          groups: {
+            include: {
+              permissions: true
+            }
+          }
+        }
+      }) as UserWithGroupsAndPermissions;
+
       if (!user) {
         return res.status(401).json({
           success: false,
@@ -157,12 +181,12 @@ export const requirePermission = (permissions: string[]) => {
         });
       }
 
-      // Check if user has required permissions
-      const userPermissions = user.groups.flatMap(group => 
+      // ✅ TypeScript udah tau tipe-nya, gak perlu "Group" atau "Permission" manual
+      const userPermissions = user.groups.flatMap(group =>
         group.permissions.map(permission => permission.name)
       );
 
-      const hasPermission = permissions.some(permission => 
+      const hasPermission = permissions.some(permission =>
         userPermissions.includes(permission)
       );
 
@@ -176,6 +200,7 @@ export const requirePermission = (permissions: string[]) => {
 
       next();
     } catch (error) {
+      console.error(error); // good practice debug
       return res.status(500).json({
         success: false,
         message: 'Terjadi kesalahan pada server',
@@ -184,6 +209,7 @@ export const requirePermission = (permissions: string[]) => {
     }
   };
 };
+
 
 // Validation middleware
 export const validateRequest = (schema: any) => {
