@@ -1,0 +1,110 @@
+### Health Check
+GET http://localhost:3000/health
+
+### Register User
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Test User",
+  "email": "test@example.com",
+  "password": "password123",
+  "profile": "https://example.com/test.jpg",
+  "bio": "Test User Bio",
+  "role": "user"
+}
+
+### Login with Admin
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "admin123"
+}
+
+### Login with Editor
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "editor@example.com",
+  "password": "editor123"
+}
+
+### Login with User
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "user123"
+}
+
+### Get Profile (replace TOKEN with actual token)
+GET http://localhost:3000/api/auth/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImVtYWlsIjoidXNlckBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzUzOTMxMDc4LCJleHAiOjE3NTM5MzE5Nzh9.1itCP4LeOTHnnIF_H6m-GaBLZ0P_WQfSjRvS9Rip_Ig
+
+### Verify Token (replace TOKEN with actual token)
+GET http://localhost:3000/api/auth/verify
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImVtYWlsIjoidXNlckBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzUzOTMxMDc4LCJleHAiOjE3NTM5MzE5Nzh9.1itCP4LeOTHnnIF_H6m-GaBLZ0P_WQfSjRvS9Rip_Ig
+
+### Refresh Token (replace REFRESH_TOKEN with actual refresh token)
+POST http://localhost:3000/api/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "REFRESH_TOKEN"
+}
+
+### Logout (replace TOKEN with actual token)
+POST http://localhost:3000/api/auth/logout
+Authorization: Bearer TOKEN
+
+### Logout with Refresh Token (replace TOKEN and REFRESH_TOKEN with actual tokens)
+POST http://localhost:3000/api/auth/logout
+Authorization: Bearer TOKEN
+Content-Type: application/json
+
+{
+  "refreshToken": "REFRESH_TOKEN"
+}
+
+### Logout from All Devices (replace TOKEN with actual token)
+POST http://localhost:3000/api/auth/logout-all
+Authorization: Bearer TOKEN
+
+### Get User's Active Tokens (replace TOKEN with actual token)
+GET http://localhost:3000/api/auth/tokens
+Authorization: Bearer TOKEN
+
+### Test Protected Route (replace TOKEN with actual token)
+GET http://localhost:3000/api/example/protected
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImVtYWlsIjoidXNlckBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzUzOTMxMDc4LCJleHAiOjE3NTM5MzE5Nzh9.1itCP4LeOTHnnIF_H6m-GaBLZ0P_WQfSjRvS9Rip_Ig
+
+### Test Admin Only Route (replace TOKEN with admin token)
+GET http://localhost:3000/api/example/admin-only
+Authorization: Bearer TOKEN
+
+### Test Create Article Permission (replace TOKEN with editor/admin token)
+POST http://localhost:3000/api/example/create-article
+Authorization: Bearer TOKEN
+Content-Type: application/json
+
+{
+  "title": "Test Article",
+  "content": "This is a test article"
+}
+
+### Test Delete Article Permission (replace TOKEN with admin token)
+DELETE http://localhost:3000/api/example/delete-article/1
+Authorization: Bearer TOKEN
+
+### Test Update User Permission (replace TOKEN with admin token)
+PUT http://localhost:3000/api/example/update-user/1
+Authorization: Bearer TOKEN
+Content-Type: application/json
+
+{
+  "name": "Updated User Name"
+} 

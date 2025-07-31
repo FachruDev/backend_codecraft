@@ -3,16 +3,21 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node src/index.ts",
-    "postinstall": "npx prisma generate",
-    "prisma:generate": "npx prisma generate",
-    "prisma:migrate-dev": "npx prisma migrate dev"
+    "dev": "ts-node src/index.ts"
   },
   "dependencies": {
     "@prisma/client": "6.9.0",
     "@prisma/extension-accelerate": "2.0.2",
+    "@types/cors": "^2.8.19",
+    "@types/dotenv": "^6.1.1",
+    "@types/jsonwebtoken": "^9.0.10",
     "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
     "express": "5.1.0",
+    "express-rate-limit": "^8.0.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
     "nodemon": "^3.1.10",
     "zod": "^4.0.13"
   },
