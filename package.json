@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "ts-node src/index.ts",
     "build": "tsc",
-    "start": "bun dist/index.js",
-    "heroku-postbuild": "bun run build"
+    "start": "npm dist/index.js",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@prisma/client": "6.9.0",
