@@ -13,4 +13,4 @@ export const updateCallToActionSchema = z.object({
 });
 
 export type CreateCallToActionInput = z.infer<typeof createCallToActionSchema>;
-export type UpdateCallToActionInput = z.infer<typeof updateCallToActionSchema>;
+export type UpdateCallToActionInput = z.infer<typeof updateCallToActionSchema>; 
