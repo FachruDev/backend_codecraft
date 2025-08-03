@@ -14,7 +14,13 @@ import {
 
 // Routes
 import authRoutes from './routes/auth'
-
+import aboutOurRoutes from './routes/singleton/aboutOurRoutes'
+import contactInformation from './routes/singleton/contactInformationRoutes'
+import contactSection from './routes/singleton/contactSectionRoutes'
+import heroSection from './routes/singleton/heroSectionRoutes'
+import portfolioSection from './routes/singleton/portfolioSectionRoutes'
+import webSetting from './routes/singleton/webSettingRoutes'
+import whyWe from './routes/singleton/whyWeRoutes'
 
 // Load env
 dotenv.config()
@@ -51,6 +57,13 @@ app.get('/health', (req, res) => {
 
 // API routes
 app.use('/api/auth', authRoutes)
+app.use('/api/about-our', aboutOurRoutes)
+app.use('/api/contact-information', contactInformation)
+app.use('/api/contact-section', contactSection)
+app.use('/api/hero-section', heroSection)
+app.use('/api/portfolio-section', portfolioSection)
+app.use('/api/web-setting', webSetting)
+app.use('/api/why-we', whyWe)
 
 // 404 handler
 app.use(notFound)
