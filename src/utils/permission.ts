@@ -125,10 +125,12 @@ export const AppPermissions = {
   [Resources.ARTICLE_CATEGORY + '_' + Action.EDIT.toUpperCase()]: `${Resources.ARTICLE_CATEGORY}.${Action.EDIT}`,
   [Resources.ARTICLE_CATEGORY + '_' + Action.DELETE.toUpperCase()]: `${Resources.ARTICLE_CATEGORY}.${Action.DELETE}`,
 
-  // Seo & Web setting permission
+  // Seo permission
   [Resources.SEO_METADATA + '_' + Action.CREATE.toUpperCase()]: `${Resources.SEO_METADATA}.${Action.CREATE}`,
   [Resources.SEO_METADATA + '_' + Action.EDIT.toUpperCase()]: `${Resources.SEO_METADATA}.${Action.EDIT}`,
   [Resources.SEO_METADATA + '_' + Action.DELETE.toUpperCase()]: `${Resources.SEO_METADATA}.${Action.DELETE}`,
+
+  // Web setting permission
   [Resources.WEB_SETTING + '_' + Action.EDIT.toUpperCase()]: `${Resources.WEB_SETTING}.${Action.EDIT}`,
 
   // Contact section permission
