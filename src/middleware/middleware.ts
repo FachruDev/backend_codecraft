@@ -11,7 +11,6 @@ const WINDOWS_MS = parseInt(process.env.WINDOWS_MS_TIME || '900000', 10);
 const WINDOWS_LIMIT = parseInt(process.env.WINDOWS_MS_LIMIT || '100', 10); 
 const IP_LIMIT = parseInt(process.env.IP_LIMIT || '10', 10);
 
-// ✅ Singleton pattern untuk Prisma
 class PrismaManager {
   private static instance: PrismaClient;
   
@@ -25,13 +24,13 @@ class PrismaManager {
 
 const prisma = PrismaManager.getInstance();
 
-// ✅ Cache untuk permissions (TTL 5 menit)
+// Cache for permissions (TTL 5 minute)
 const permissionCache = new NodeCache({ 
-  stdTTL: 300, // 5 menit
-  checkperiod: 60 // check for expired keys every 60 seconds
+  stdTTL: 300, // 5m
+  checkperiod: 60 // check for expired keys every 60s
 });
 
-// ✅ Type definitions untuk database structures (based on your schema)
+// Type definitions
 interface UserPermission {
   name: string;
 }
@@ -44,7 +43,6 @@ interface UserWithPermissions {
   groups: UserGroup[];
 }
 
-// ✅ Prisma type definition that matches your schema
 type UserWithGroupsAndPermissions = Prisma.UserGetPayload<{
   include: {
     groups: {
@@ -55,14 +53,12 @@ type UserWithGroupsAndPermissions = Prisma.UserGetPayload<{
   };
 }>;
 
-// ✅ Custom TokenPayload interface (matches your Int ID schema)
 interface CustomTokenPayload {
-  userId: number; // Matches your Int @id @default(autoincrement())
+  userId: number;
   role?: string;
   [key: string]: any;
 }
 
-// Extend Express Request to include user with proper typing
 declare global {
   namespace Express {
     interface Request {
@@ -71,7 +67,7 @@ declare global {
   }
 }
 
-// ✅ Optimized error responses (reusable)
+// Optimized error responses (reusable)
 const errorResponses = {
   unauthorized: {
     success: false,
@@ -104,7 +100,6 @@ export const rateLimiter = rateLimit({
   },
   standardHeaders: true,
   legacyHeaders: false,
-  // ✅ Skip successful requests untuk mengurangi memory usage
   skipSuccessfulRequests: false,
   skipFailedRequests: false,
 });
@@ -118,42 +113,34 @@ export const loginRateLimiter = rateLimit({
   },
   standardHeaders: true,
   legacyHeaders: false,
-  // ✅ Skip successful requests for login (only count failures)
   skipSuccessfulRequests: true,
 });
 
 // Security middleware
 export const securityMiddleware = [
   helmet({
-    // ✅ Customize helmet untuk performa lebih baik
     contentSecurityPolicy: process.env.NODE_ENV === 'production',
     crossOriginEmbedderPolicy: false
   }),
   cors({
     origin: process.env.ALLOWED_ORIGINS?.split(',') || ['http://localhost:3000'],
     credentials: true,
-    // ✅ Optimize CORS untuk production
     optionsSuccessStatus: 200,
     preflightContinue: false
   }),
 ];
 
-// ✅ Helper function untuk get user permissions dengan caching
-// Optimized for your many-to-many relationship schema
 async function getUserPermissions(userId: number): Promise<string[]> {
   const cacheKey = `user_permissions_${userId}`;
-  
-  // Check cache first
   const cachedPermissions = permissionCache.get<string[]>(cacheKey);
   if (cachedPermissions) {
     return cachedPermissions;
   }
 
   try {
-    // Query sesuai dengan schema many-to-many Anda
     const user = await prisma.user.findUnique({
       where: { 
-        id: userId // Int ID dari schema Anda
+        id: userId
       },
       select: {
         groups: {
@@ -173,15 +160,11 @@ async function getUserPermissions(userId: number): Promise<string[]> {
       return [];
     }
 
-    // Extract permissions dari many-to-many relationship
     const permissions: string[] = user.groups.flatMap((group: UserGroup) =>
       group.permissions.map((permission: UserPermission) => permission.name)
     );
 
-    // Remove duplicates (jika user punya multiple groups dengan permission sama)
     const uniquePermissions = [...new Set(permissions)];
-
-    // Cache the result
     permissionCache.set(cacheKey, uniquePermissions);
     
     return uniquePermissions;
@@ -191,7 +174,7 @@ async function getUserPermissions(userId: number): Promise<string[]> {
   }
 }
 
-// ✅ Optimized authentication middleware
+// Optimized authentication middleware
 export const authenticateToken = async (
   req: Request,
   res: Response,
@@ -199,7 +182,7 @@ export const authenticateToken = async (
 ) => {
   try {
     const authHeader = req.headers.authorization;
-    const token = authHeader?.split(' ')[1]; // ✅ Optional chaining
+    const token = authHeader?.split(' ')[1]; // Optional chaining
 
     if (!token) {
       return res.status(401).json(errorResponses.unauthorized);
@@ -216,7 +199,7 @@ export const authenticateToken = async (
   }
 };
 
-// ✅ Optimized optional authentication
+// Optimized optional authentication
 export const optionalAuth = (
   req: Request,
   res: Response,
@@ -229,7 +212,6 @@ export const optionalAuth = (
     try {
       req.user = AuthService.verifyToken(token) as CustomTokenPayload;
     } catch (error) {
-      // Silently fail for optional auth
       req.user = undefined;
     }
   }
@@ -237,9 +219,8 @@ export const optionalAuth = (
   next();
 };
 
-// ✅ Optimized role-based authorization
+// Optimized role-based authorization
 export const requireRole = (roles: string[]) => {
-  // ✅ Convert to Set for O(1) lookup
   const roleSet = new Set(roles);
   
   return (req: Request, res: Response, next: NextFunction) => {
@@ -252,9 +233,8 @@ export const requireRole = (roles: string[]) => {
   };
 };
 
-// ✅ Highly optimized permission-based authorization
+// Highly optimized permission-based authorization
 export const requirePermission = (permissions: string[]) => {
-  // ✅ Convert to Set for O(1) lookup
   const permissionSet = new Set(permissions);
   
   return async (req: Request, res: Response, next: NextFunction) => {
@@ -263,10 +243,7 @@ export const requirePermission = (permissions: string[]) => {
         return res.status(401).json(errorResponses.unauthorized);
       }
 
-      // ✅ Use cached permission lookup with proper type handling
       const userPermissions = await getUserPermissions(req.user.userId);
-      
-      // ✅ Efficient permission check using Set with explicit typing
       const hasPermission = userPermissions.some((permission: string) => 
         permissionSet.has(permission)
       );
@@ -287,7 +264,7 @@ export const requirePermission = (permissions: string[]) => {
   };
 };
 
-// ✅ Optimized validation middleware dengan better error handling
+// Optimized validation middleware with better error handling
 export const validateRequest = (schema: any) => {
   return (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -312,7 +289,7 @@ export const validateRequest = (schema: any) => {
   };
 };
 
-// ✅ Enhanced error handling dengan lebih banyak error types
+// Enhanced error handling with more error types
 export const errorHandler = (
   error: Error,
   req: Request,
@@ -327,7 +304,6 @@ export const errorHandler = (
     method: req.method
   });
 
-  // Handle specific Prisma errors
   if (error.name === 'PrismaClientKnownRequestError') {
     const prismaError = error as any;
     
@@ -376,9 +352,8 @@ export const notFound = (req: Request, res: Response) => {
   });
 };
 
-// ✅ Optimized request logging dengan conditional logging
+// Optimized request logging with conditional logging
 export const requestLogger = (req: Request, res: Response, next: NextFunction) => {
-  // ✅ Skip logging untuk health checks dan static files
   if (req.path === '/health' || req.path.startsWith('/static/')) {
     return next();
   }
@@ -388,7 +363,7 @@ export const requestLogger = (req: Request, res: Response, next: NextFunction) =
   res.on('finish', () => {
     const duration = Number(process.hrtime.bigint() - start) / 1000000; // Convert to ms
     
-    // ✅ Only log in development or errors in production
+    // Only log in development or errors in production
     if (process.env.NODE_ENV === 'development' || res.statusCode >= 400) {
       console.log(
         `${req.method} ${req.originalUrl} - ${res.statusCode} - ${duration.toFixed(2)}ms`
@@ -399,7 +374,7 @@ export const requestLogger = (req: Request, res: Response, next: NextFunction) =
   next();
 };
 
-// ✅ Cache cleanup function (call this periodically or on app shutdown)
+// Cache cleanup function (call this periodically or on app shutdown)
 export const clearPermissionCache = (userId?: number) => {
   if (userId) {
     permissionCache.del(`user_permissions_${userId}`);
@@ -408,7 +383,7 @@ export const clearPermissionCache = (userId?: number) => {
   }
 };
 
-// ✅ Graceful shutdown untuk cleanup resources
+// Graceful shutdown for cleanup resources
 export const gracefulShutdown = async () => {
   console.log('Shutting down gracefully...');
   permissionCache.flushAll();
