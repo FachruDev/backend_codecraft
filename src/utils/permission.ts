@@ -3,150 +3,91 @@ export enum Action {
   CREATE = 'create',
   EDIT = 'edit',
   DELETE = 'delete',
-  MANAGE = 'manage', // All in one for 'create', 'view', 'edit', 'delete'
+  MANAGE = 'manage',
 }
 
-
-// Helps maintain consistency
-export const Resources = {
-  USER: 'user',
-  GROUP: 'group',
-  PERMISSION: 'permission',
-  HERO_SECTION: 'hero_section',
-  ACHIEVEMENT: 'achievement',
-  CLIENT: 'client',
-  PORTFOLIO: 'PORTFOLIO', 
-  PORTFOLIO_SECTION: 'portfolio_section',
-  SERVICE: 'SERVICE', 
-  SERVICE_SECTION: 'service_section',
-  SERVICE_PROCESS: 'service_process',
-  SUB_SERVICE: 'sub_service',
-  SERVICE_EXCELLENCE: 'service_excellence',
-  QA: 'qa',
-  ABOUT_OUR: 'about_our',
-  WHY_WE: 'why_we',
-  CALL_TO_ACTION: 'call_to_action',
-  ARTICLE_ITEM: 'article_item',
-  ARTICLE_CATEGORY: 'article_category',
-  SEO_METADATA: 'seo_metadata',
-  WEB_SETTING: 'web_setting',
-  CONTACT_SECTION: 'contact_section',
-  CONTACT_INFORMATION: 'contact_information',
-  CONTACT_FORM: 'contact_form',
-  SOCIAL_MEDIA: 'social_media',
-} as const;
-
-// All permission
 export const AppPermissions = {
-
-  // User permission
-  [Resources.USER + '_' + Action.VIEW.toUpperCase()]: `${Resources.USER}.${Action.VIEW}`,
-  [Resources.USER + '_' + Action.CREATE.toUpperCase()]: `${Resources.USER}.${Action.CREATE}`,
-  [Resources.USER + '_' + Action.EDIT.toUpperCase()]: `${Resources.USER}.${Action.EDIT}`,
-  [Resources.USER + '_' + Action.DELETE.toUpperCase()]: `${Resources.USER}.${Action.DELETE}`,
+  USER_VIEW: 'user.view',
+  USER_CREATE: 'user.create',
+  USER_EDIT: 'user.edit',
+  USER_DELETE: 'user.delete',
   
-  // Group permission
-  [Resources.GROUP + '_' + Action.VIEW.toUpperCase()]: `${Resources.GROUP}.${Action.VIEW}`,
-  [Resources.GROUP + '_' + Action.CREATE.toUpperCase()]: `${Resources.GROUP}.${Action.CREATE}`,
-  [Resources.GROUP + '_' + Action.EDIT.toUpperCase()]: `${Resources.GROUP}.${Action.EDIT}`,
-  [Resources.GROUP + '_' + Action.DELETE.toUpperCase()]: `${Resources.GROUP}.${Action.DELETE}`,
-  [Resources.GROUP + '_' + Action.MANAGE.toUpperCase()]: `${Resources.GROUP}.${Action.MANAGE}`, 
+  GROUP_VIEW: 'group.view',
+  GROUP_CREATE: 'group.create',
+  GROUP_EDIT: 'group.edit',
+  GROUP_DELETE: 'group.delete',
+  GROUP_MANAGE: 'group.manage',
 
-  // Permssion 
-  [Resources.PERMISSION + '_' + Action.VIEW.toUpperCase()]: `${Resources.PERMISSION}.${Action.VIEW}`,
+  PERMISSION_VIEW: 'permission.view',
+  PERMISSION_CREATE: 'permission.create',
+  PERMISSION_EDIT: 'permission.edit',
+  PERMISSION_DELETE: 'permission.delete',
+  PERMISSION_MANAGE: 'permission.manage',
 
-  // Hero section permission
-  [Resources.HERO_SECTION + '_' + Action.EDIT.toUpperCase()]: `${Resources.HERO_SECTION}.${Action.EDIT}`,
-  
-  // Achievement permission
-  [Resources.ACHIEVEMENT + '_' + Action.EDIT.toUpperCase()]: `${Resources.ACHIEVEMENT}.${Action.EDIT}`,
-  
-  // Client permission
-  [Resources.CLIENT + '_' + Action.CREATE.toUpperCase()]: `${Resources.CLIENT}.${Action.CREATE}`,
-  [Resources.CLIENT + '_' + Action.EDIT.toUpperCase()]: `${Resources.CLIENT}.${Action.EDIT}`,
-  [Resources.CLIENT + '_' + Action.DELETE.toUpperCase()]: `${Resources.CLIENT}.${Action.DELETE}`,
+  HERO_SECTION_EDIT: 'hero_section.edit',
+  ACHIEVEMENT_EDIT: 'achievement.edit',
+  CLIENT_CREATE: 'client.create',
+  CLIENT_EDIT: 'client.edit',
+  CLIENT_DELETE: 'client.delete',
+  PORTFOLIO_SECTION_EDIT: 'portfolio_section.edit',
 
-  // Portfolio section permission
-  [Resources.PORTFOLIO_SECTION + '_' + Action.EDIT.toUpperCase()]: `${Resources.PORTFOLIO_SECTION}.${Action.EDIT}`,
 
-  // Portfolio permission
-  [Resources.PORTFOLIO + '_' + Action.VIEW.toUpperCase()]: `${Resources.PORTFOLIO}.${Action.VIEW}`,
-  [Resources.PORTFOLIO + '_' + Action.CREATE.toUpperCase()]: `${Resources.PORTFOLIO}.${Action.CREATE}`,
-  [Resources.PORTFOLIO + '_' + Action.EDIT.toUpperCase()]: `${Resources.PORTFOLIO}.${Action.EDIT}`,
-  [Resources.PORTFOLIO + '_' + Action.DELETE.toUpperCase()]: `${Resources.PORTFOLIO}.${Action.DELETE}`,
+  PORTFOLIO_VIEW: 'PORTFOLIO.view',
+  PORTFOLIO_CREATE: 'PORTFOLIO.create',
+  PORTFOLIO_EDIT: 'PORTFOLIO.edit',
+  PORTFOLIO_DELETE: 'PORTFOLIO.delete',
 
-  // Service sections permission
-  [Resources.SERVICE_SECTION + '_' + Action.EDIT.toUpperCase()]: `${Resources.SERVICE_SECTION}.${Action.EDIT}`,
+  SERVICE_SECTION_EDIT: 'service_section.edit',
 
-  // Service permission
-  [Resources.SERVICE + '_' + Action.VIEW.toUpperCase()]: `${Resources.SERVICE}.${Action.VIEW}`,
-  [Resources.SERVICE + '_' + Action.CREATE.toUpperCase()]: `${Resources.SERVICE}.${Action.CREATE}`,
-  [Resources.SERVICE + '_' + Action.EDIT.toUpperCase()]: `${Resources.SERVICE}.${Action.EDIT}`,
-  [Resources.SERVICE + '_' + Action.DELETE.toUpperCase()]: `${Resources.SERVICE}.${Action.DELETE}`,
 
-  // Service process permission
-  [Resources.SERVICE_PROCESS + '_' + Action.CREATE.toUpperCase()]: `${Resources.SERVICE_PROCESS}.${Action.CREATE}`,
-  [Resources.SERVICE_PROCESS + '_' + Action.EDIT.toUpperCase()]: `${Resources.SERVICE_PROCESS}.${Action.EDIT}`,
-  [Resources.SERVICE_PROCESS + '_' + Action.DELETE.toUpperCase()]: `${Resources.SERVICE_PROCESS}.${Action.DELETE}`,
+  SERVICE_VIEW: 'SERVICE.view',
+  SERVICE_CREATE: 'SERVICE.create',
+  SERVICE_EDIT: 'SERVICE.edit',
+  SERVICE_DELETE: 'SERVICE.delete',
 
-  // Sub service permission
-  [Resources.SUB_SERVICE + '_' + Action.CREATE.toUpperCase()]: `${Resources.SUB_SERVICE}.${Action.CREATE}`,
-  [Resources.SUB_SERVICE + '_' + Action.EDIT.toUpperCase()]: `${Resources.SUB_SERVICE}.${Action.EDIT}`,
-  [Resources.SUB_SERVICE + '_' + Action.DELETE.toUpperCase()]: `${Resources.SUB_SERVICE}.${Action.DELETE}`,
+  SERVICE_PROCESS_CREATE: 'service_process.create',
+  SERVICE_PROCESS_EDIT: 'service_process.edit',
+  SERVICE_PROCESS_DELETE: 'service_process.delete',
 
-  // Service excellence permission
-  [Resources.SERVICE_EXCELLENCE + '_' + Action.CREATE.toUpperCase()]: `${Resources.SERVICE_EXCELLENCE}.${Action.CREATE}`,
-  [Resources.SERVICE_EXCELLENCE + '_' + Action.EDIT.toUpperCase()]: `${Resources.SERVICE_EXCELLENCE}.${Action.EDIT}`,
-  [Resources.SERVICE_EXCELLENCE + '_' + Action.DELETE.toUpperCase()]: `${Resources.SERVICE_EXCELLENCE}.${Action.DELETE}`,
+  SUB_SERVICE_CREATE: 'sub_service.create',
+  SUB_SERVICE_EDIT: 'sub_service.edit',
+  SUB_SERVICE_DELETE: 'sub_service.delete',
 
-  // Qa permission
-  [Resources.QA + '_' + Action.CREATE.toUpperCase()]: `${Resources.QA}.${Action.CREATE}`,
-  [Resources.QA + '_' + Action.EDIT.toUpperCase()]: `${Resources.QA}.${Action.EDIT}`,
-  [Resources.QA + '_' + Action.DELETE.toUpperCase()]: `${Resources.QA}.${Action.DELETE}`,
+  SERVICE_EXCELLENCE_CREATE: 'service_excellence.create',
+  SERVICE_EXCELLENCE_EDIT: 'service_excellence.edit',
+  SERVICE_EXCELLENCE_DELETE: 'service_excellence.delete',
 
-  // About our permission
-  [Resources.ABOUT_OUR + '_' + Action.EDIT.toUpperCase()]: `${Resources.ABOUT_OUR}.${Action.EDIT}`,
+  QA_CREATE: 'qa.create',
+  QA_EDIT: 'qa.edit',
+  QA_DELETE: 'qa.delete',
 
-  // Why we permission
-  [Resources.WHY_WE + '_' + Action.EDIT.toUpperCase()]: `${Resources.WHY_WE}.${Action.EDIT}`,
+  ABOUT_OUR_EDIT: 'about_our.edit',
+  WHY_WE_EDIT: 'why_we.edit',
+  CALL_TO_ACTION_EDIT: 'call_to_action.edit',
 
-  // Call to action permission
-  [Resources.CALL_TO_ACTION + '_' + Action.EDIT.toUpperCase()]: `${Resources.CALL_TO_ACTION}.${Action.EDIT}`,
+  ARTICLE_VIEW: 'ARTICLE.view',
+  ARTICLE_CREATE: 'ARTICLE.create',
+  ARTICLE_EDIT: 'ARTICLE.edit',
+  ARTICLE_DELETE: 'ARTICLE.delete',
 
-  // Articles permission
-  [Resources.ARTICLE_ITEM + '_' + Action.VIEW.toUpperCase()]: `${Resources.ARTICLE_ITEM}.${Action.VIEW}`,
-  [Resources.ARTICLE_ITEM + '_' + Action.CREATE.toUpperCase()]: `${Resources.ARTICLE_ITEM}.${Action.CREATE}`,
-  [Resources.ARTICLE_ITEM + '_' + Action.EDIT.toUpperCase()]: `${Resources.ARTICLE_ITEM}.${Action.EDIT}`,
-  [Resources.ARTICLE_ITEM + '_' + Action.DELETE.toUpperCase()]: `${Resources.ARTICLE_ITEM}.${Action.DELETE}`,
+  ARTICLE_CATEGORY_VIEW: 'article_category.view',
+  ARTICLE_CATEGORY_CREATE: 'article_category.create',
+  ARTICLE_CATEGORY_EDIT: 'article_category.edit',
+  ARTICLE_CATEGORY_DELETE: 'article_category.delete',
 
-  // Article category permission  
-  [Resources.ARTICLE_CATEGORY + '_' + Action.VIEW.toUpperCase()]: `${Resources.ARTICLE_CATEGORY}.${Action.VIEW}`,
-  [Resources.ARTICLE_CATEGORY + '_' + Action.CREATE.toUpperCase()]: `${Resources.ARTICLE_CATEGORY}.${Action.CREATE}`,
-  [Resources.ARTICLE_CATEGORY + '_' + Action.EDIT.toUpperCase()]: `${Resources.ARTICLE_CATEGORY}.${Action.EDIT}`,
-  [Resources.ARTICLE_CATEGORY + '_' + Action.DELETE.toUpperCase()]: `${Resources.ARTICLE_CATEGORY}.${Action.DELETE}`,
+  SEO_METADATA_CREATE: 'seo_metadata.create',
+  SEO_METADATA_EDIT: 'seo_metadata.edit',
+  SEO_METADATA_DELETE: 'seo_metadata.delete',
+  WEB_SETTING_EDIT: 'web_setting.edit',
 
-  // Seo permission
-  [Resources.SEO_METADATA + '_' + Action.CREATE.toUpperCase()]: `${Resources.SEO_METADATA}.${Action.CREATE}`,
-  [Resources.SEO_METADATA + '_' + Action.EDIT.toUpperCase()]: `${Resources.SEO_METADATA}.${Action.EDIT}`,
-  [Resources.SEO_METADATA + '_' + Action.DELETE.toUpperCase()]: `${Resources.SEO_METADATA}.${Action.DELETE}`,
+  CONTACT_SECTION_EDIT: 'contact_section.edit',
+  CONTACT_INFORMATION_EDIT: 'contact_information.edit',
+  CONTACT_FORM_VIEW: 'contact_form.view',
+  CONTACT_FORM_DELETE: 'contact_form.delete',
 
-  // Web setting permission
-  [Resources.WEB_SETTING + '_' + Action.EDIT.toUpperCase()]: `${Resources.WEB_SETTING}.${Action.EDIT}`,
-
-  // Contact section permission
-  [Resources.CONTACT_SECTION + '_' + Action.EDIT.toUpperCase()]: `${Resources.CONTACT_SECTION}.${Action.EDIT}`,
-  
-  // Contact information permission
-  [Resources.CONTACT_INFORMATION + '_' + Action.EDIT.toUpperCase()]: `${Resources.CONTACT_INFORMATION}.${Action.EDIT}`,
-
-  // Contact form permission
-  [Resources.CONTACT_FORM + '_' + Action.VIEW.toUpperCase()]: `${Resources.CONTACT_FORM}.${Action.VIEW}`,
-  [Resources.CONTACT_FORM + '_' + Action.DELETE.toUpperCase()]: `${Resources.CONTACT_FORM}.${Action.DELETE}`,
-
-  // Social media permission
-  [Resources.SOCIAL_MEDIA + '_' + Action.CREATE.toUpperCase()]: `${Resources.SOCIAL_MEDIA}.${Action.CREATE}`,
-  [Resources.SOCIAL_MEDIA + '_' + Action.EDIT.toUpperCase()]: `${Resources.SOCIAL_MEDIA}.${Action.EDIT}`,
-  [Resources.SOCIAL_MEDIA + '_' + Action.DELETE.toUpperCase()]: `${Resources.SOCIAL_MEDIA}.${Action.DELETE}`,
+  SOCIAL_MEDIA_CREATE: 'social_media.create',
+  SOCIAL_MEDIA_EDIT: 'social_media.edit',
+  SOCIAL_MEDIA_DELETE: 'social_media.delete',
 
 } as const;
 
