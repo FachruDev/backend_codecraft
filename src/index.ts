@@ -23,6 +23,7 @@ import webSetting from './routes/singleton/webSettingRoutes'
 import whyWe from './routes/singleton/whyWeRoutes'
 import user from './routes/userRoutes'
 import profile from './routes/profileRoutes'
+import permission from './routes/permissionRoutes'
 
 // Load env
 dotenv.config()
@@ -68,6 +69,7 @@ app.use('/api/web-setting', webSetting)
 app.use('/api/why-we', whyWe)
 app.use('/api/user', user)
 app.use('/api/profile', profile)
+app.use('/api/permission', permission)
 
 // 404 handler
 app.use(notFound)

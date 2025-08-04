@@ -104,3 +104,8 @@ Content-Type: application/json
 DELETE http://localhost:3000/api/profile/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImVtYWlsIjoidXNlckBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU0MjY5OTkwLCJleHAiOjE3NTQyNzA4OTB9.Aa3pgpe38xqyHRK4kmTpi_pHB_AFK1ZWYpResFPI85g
 Content-Type: application/json
+
+### Get all permissions
+GET http://localhost:3000/api/permission
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiYWRtaW5AZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTQyNzczMDgsImV4cCI6MTc1NDI3ODIwOH0.9vuEh4pNK-4Lb7hDR858TXXC_nOqjDLoTG3Z2Upp47k
+Content-Type: application/json
