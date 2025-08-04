@@ -21,6 +21,8 @@ import heroSection from './routes/singleton/heroSectionRoutes'
 import portfolioSection from './routes/singleton/portfolioSectionRoutes'
 import webSetting from './routes/singleton/webSettingRoutes'
 import whyWe from './routes/singleton/whyWeRoutes'
+import user from './routes/userRoutes'
+import profile from './routes/profileRoutes'
 
 // Load env
 dotenv.config()
@@ -64,6 +66,8 @@ app.use('/api/hero-section', heroSection)
 app.use('/api/portfolio-section', portfolioSection)
 app.use('/api/web-setting', webSetting)
 app.use('/api/why-we', whyWe)
+app.use('/api/user', user)
+app.use('/api/profile', profile)
 
 // 404 handler
 app.use(notFound)
