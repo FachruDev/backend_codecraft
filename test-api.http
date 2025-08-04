@@ -43,7 +43,7 @@ Content-Type: application/json
 
 ### Get Profile (replace TOKEN with actual token)
 GET http://localhost:3000/api/auth/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImVtYWlsIjoidXNlckBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzUzOTMxMDc4LCJleHAiOjE3NTM5MzE5Nzh9.1itCP4LeOTHnnIF_H6m-GaBLZ0P_WQfSjRvS9Rip_Ig
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImVtYWlsIjoidXNlckBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU0MjY5OTkwLCJleHAiOjE3NTQyNzA4OTB9.Aa3pgpe38xqyHRK4kmTpi_pHB_AFK1ZWYpResFPI85g
 
 ### Verify Token (replace TOKEN with actual token)
 GET http://localhost:3000/api/auth/verify
@@ -76,4 +76,31 @@ Authorization: Bearer TOKEN
 
 ### Get User's Active Tokens (replace TOKEN with actual token)
 GET http://localhost:3000/api/auth/tokens
-Authorization: Bearer TOKEN
+Authorization: Bearer 
+
+### Edit contact information
+PUT http://localhost:3000/api/contact-information
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImVtYWlsIjoidXNlckBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU0MjIwNTE0LCJleHAiOjE3NTQyMjE0MTR9.9Y8cZ9y2ca-rLD_PrXCD-cqSgeafF2ZEAbJ0UuCAh1A
+Content-Type: application/json
+
+{
+  "email": "codecraf2t1@gmail.com",
+  "phoneNumber": "082212131153118",
+  "ourOffice": "Bogor12 kota"
+}
+
+### Update your profile
+PUT http://localhost:3000/api/profile/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImVtYWlsIjoidXNlckBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU0MjY5OTkwLCJleHAiOjE3NTQyNzA4OTB9.Aa3pgpe38xqyHRK4kmTpi_pHB_AFK1ZWYpResFPI85g
+Content-Type: application/json
+
+{
+  "name": "Regular user updated",
+  "email": "user@example.com",
+  "bio": "Regular user updated bio"
+}
+
+### Delete your profile
+DELETE http://localhost:3000/api/profile/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImVtYWlsIjoidXNlckBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU0MjY5OTkwLCJleHAiOjE3NTQyNzA4OTB9.Aa3pgpe38xqyHRK4kmTpi_pHB_AFK1ZWYpResFPI85g
+Content-Type: application/json
