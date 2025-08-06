@@ -29,21 +29,20 @@ export const AppPermissions = {
   CLIENT_CREATE: 'client.create',
   CLIENT_EDIT: 'client.edit',
   CLIENT_DELETE: 'client.delete',
+
   PORTFOLIO_SECTION_EDIT: 'portfolio_section.edit',
 
-
-  PORTFOLIO_VIEW: 'PORTFOLIO.view',
-  PORTFOLIO_CREATE: 'PORTFOLIO.create',
-  PORTFOLIO_EDIT: 'PORTFOLIO.edit',
-  PORTFOLIO_DELETE: 'PORTFOLIO.delete',
+  PORTFOLIO_VIEW: 'portfolio.view',
+  PORTFOLIO_CREATE: 'portfolio.create',
+  PORTFOLIO_EDIT: 'portfolio.edit',
+  PORTFOLIO_DELETE: 'portfolio.delete',
 
   SERVICE_SECTION_EDIT: 'service_section.edit',
 
-
-  SERVICE_VIEW: 'SERVICE.view',
-  SERVICE_CREATE: 'SERVICE.create',
-  SERVICE_EDIT: 'SERVICE.edit',
-  SERVICE_DELETE: 'SERVICE.delete',
+  SERVICE_VIEW: 'service.view',
+  SERVICE_CREATE: 'service.create',
+  SERVICE_EDIT: 'service.edit',
+  SERVICE_DELETE: 'service.delete',
 
   SERVICE_PROCESS_CREATE: 'service_process.create',
   SERVICE_PROCESS_EDIT: 'service_process.edit',
@@ -65,10 +64,10 @@ export const AppPermissions = {
   WHY_WE_EDIT: 'why_we.edit',
   CALL_TO_ACTION_EDIT: 'call_to_action.edit',
 
-  ARTICLE_VIEW: 'ARTICLE.view',
-  ARTICLE_CREATE: 'ARTICLE.create',
-  ARTICLE_EDIT: 'ARTICLE.edit',
-  ARTICLE_DELETE: 'ARTICLE.delete',
+  ARTICLE_VIEW: 'article.view',
+  ARTICLE_CREATE: 'article.create',
+  ARTICLE_EDIT: 'article.edit',
+  ARTICLE_DELETE: 'article.delete',
 
   ARTICLE_CATEGORY_VIEW: 'article_category.view',
   ARTICLE_CATEGORY_CREATE: 'article_category.create',
