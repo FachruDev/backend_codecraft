@@ -32,6 +32,7 @@ import service from './routes/service/layananRoutes'
 import serviceExcellence from './routes/service/serviceExcellenceRoutes'
 import serviceProcess from './routes/service/serviceProcessRoutes'
 import serviceSection from './routes/service/serviceSectionRoutes'
+import subService from './routes/service/subServiceRoutes'
 
 // Load env
 dotenv.config()
@@ -86,6 +87,7 @@ app.use('/api/service', service)
 app.use('/api/service-excellence', serviceExcellence)
 app.use('/api/service-process', serviceProcess)
 app.use('/api/service-section', serviceSection)
+app.use('/api/sub-service', subService)
 
 // 404 handler
 app.use(notFound)
