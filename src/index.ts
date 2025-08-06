@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 import { withAccelerate } from '@prisma/extension-accelerate'
 import express from 'express'
 import dotenv from 'dotenv'
@@ -30,6 +30,7 @@ import article from './routes/article/articleRoutes'
 import qa from './routes/service/qaRoutes'
 import service from './routes/service/layananRoutes'
 import serviceExcellence from './routes/service/serviceExcellenceRoutes'
+import serviceProcess from './routes/service/serviceProcessRoutes'
 
 // Load env
 dotenv.config()
@@ -82,6 +83,7 @@ app.use('/api/article', article)
 app.use('/api/qa', qa)
 app.use('/api/service', service)
 app.use('/api/service-excellence', serviceExcellence)
+app.use('/api/service-process', serviceProcess)
 
 // 404 handler
 app.use(notFound)
