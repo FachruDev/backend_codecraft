@@ -214,6 +214,7 @@ enum ArticleStatus {
 model ArticleCategory {
   id        Int      @id @default(autoincrement())
   title     Json    @db.Json // l18n
+  slug      String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   
