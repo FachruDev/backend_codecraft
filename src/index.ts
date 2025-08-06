@@ -25,6 +25,7 @@ import user from './routes/userRoutes'
 import profile from './routes/profileRoutes'
 import permission from './routes/permissionRoutes'
 import group from './routes/groupRoutes'
+import articleCategory from './routes/article/articleCategoryRoutes'
 
 // Load env
 dotenv.config()
@@ -72,6 +73,7 @@ app.use('/api/user', user)
 app.use('/api/profile', profile)
 app.use('/api/permission', permission)
 app.use('/api/group', group)
+app.use('/api/article-category', articleCategory)
 
 // 404 handler
 app.use(notFound)
