@@ -24,6 +24,7 @@ import whyWe from './routes/singleton/whyWeRoutes'
 import user from './routes/userRoutes'
 import profile from './routes/profileRoutes'
 import permission from './routes/permissionRoutes'
+import group from './routes/groupRoutes'
 
 // Load env
 dotenv.config()
@@ -70,6 +71,7 @@ app.use('/api/why-we', whyWe)
 app.use('/api/user', user)
 app.use('/api/profile', profile)
 app.use('/api/permission', permission)
+app.use('/api/group', group)
 
 // 404 handler
 app.use(notFound)
