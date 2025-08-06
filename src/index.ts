@@ -29,6 +29,7 @@ import articleCategory from './routes/article/articleCategoryRoutes'
 import article from './routes/article/articleRoutes'
 import qa from './routes/service/qaRoutes'
 import service from './routes/service/layananRoutes'
+import serviceExcellence from './routes/service/serviceExcellenceRoutes'
 
 // Load env
 dotenv.config()
@@ -80,6 +81,7 @@ app.use('/api/article-category', articleCategory)
 app.use('/api/article', article)
 app.use('/api/qa', qa)
 app.use('/api/service', service)
+app.use('/api/service-excellence', serviceExcellence)
 
 // 404 handler
 app.use(notFound)
