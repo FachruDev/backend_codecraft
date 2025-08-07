@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '../../utils/prisma';
 import { UpdatePortfolioSectionInput } from '../../schemas/singleton/portfolioSection.schema';
-
-const prisma = new PrismaClient();
 
 /**
  * Mendapatkan satu-satunya record PortfolioSection.

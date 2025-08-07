@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '../../utils/prisma';
 import { UpdateContactSectionInput } from '../../schemas/singleton/contactSection.schema';
-
-const prisma = new PrismaClient();
 
 /**
  * Mendapatkan satu-satunya record ContactSection.

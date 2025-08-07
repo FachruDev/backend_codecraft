@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import prisma from './utils/prisma'
 import { withAccelerate } from '@prisma/extension-accelerate'
 import express from 'express'
 import dotenv from 'dotenv'
@@ -43,8 +43,6 @@ import socialMedia from './routes/socialMediaRoutes'
 
 // Load env
 dotenv.config()
-
-const prisma = new PrismaClient().$extends(withAccelerate())
 
 const app = express()
 

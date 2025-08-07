@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '../../utils/prisma';
 import { CreateQAInput, UpdateQAInput } from '../../schemas/service/qa.schema';
-
-const prisma = new PrismaClient();
 
 /**
  * Mendapatkan daftar semua Q&A.

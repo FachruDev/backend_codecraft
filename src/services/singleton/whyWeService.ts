@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '../../utils/prisma';
 import { UpdateWhyWeInput } from '../../schemas/singleton/whyWe.schema';
-
-const prisma = new PrismaClient();
 
 /**
  * Mendapatkan satu-satunya record WhyWe.

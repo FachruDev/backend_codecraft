@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '../../utils/prisma';
 import { UpdateHeroSectionInput } from '../../schemas/singleton/heroSection.schema';
-
-const prisma = new PrismaClient();
 
 /**
 * Mengambil HeroSection tunggal dari basis data.
