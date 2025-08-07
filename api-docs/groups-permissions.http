@@ -1,0 +1,296 @@
+# ================================
+# GROUPS & PERMISSIONS API ENDPOINTS
+# ================================
+# Base URL: http://localhost:3000
+# Description: Group and permission management endpoints
+
+@baseUrl = http://localhost:3000
+@adminToken = {{admin_login_response.response.body.accessToken}}
+
+### ================================
+# PERMISSIONS ENDPOINTS
+# ================================
+
+### 1. Get All Permissions
+# Method: GET
+# Endpoint: /api/permission
+# Permission: Authenticated users
+# Description: Get list of all available permissions
+GET {{baseUrl}}/api/permission
+Authorization: Bearer {{adminToken}}
+
+### ================================
+# GROUPS ENDPOINTS
+# ================================
+
+### 2. Get All Groups
+# Method: GET
+# Endpoint: /api/group
+# Permission: GROUP_VIEW
+# Description: Get list of all groups with their users and permissions
+GET {{baseUrl}}/api/group
+Authorization: Bearer {{adminToken}}
+
+### 3. Get Group by ID
+# Method: GET
+# Endpoint: /api/group/{id}
+# Permission: GROUP_VIEW
+# Description: Get specific group details by ID
+GET {{baseUrl}}/api/group/1
+Authorization: Bearer {{adminToken}}
+
+### 4. Create New Group
+# Method: POST
+# Endpoint: /api/group
+# Permission: GROUP_CREATE
+# Description: Create a new group with optional users and permissions
+POST {{baseUrl}}/api/group
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "name": "Marketing Team",
+  "permissionIds": [1, 2, 5, 8],
+  "userIds": [3, 4, 5]
+}
+
+### 5. Update Group
+# Method: PUT
+# Endpoint: /api/group/{id}
+# Permission: GROUP_EDIT
+# Description: Update existing group details
+PUT {{baseUrl}}/api/group/2
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "name": "Updated Marketing Team",
+  "permissionIds": [1, 2, 5, 8, 10],
+  "userIds": [3, 4, 5, 6]
+}
+
+### 6. Delete Group
+# Method: DELETE
+# Endpoint: /api/group/{id}
+# Permission: GROUP_DELETE
+# Description: Delete group (users will not be deleted)
+DELETE {{baseUrl}}/api/group/3
+Authorization: Bearer {{adminToken}}
+
+### ================================
+# GROUP USER MANAGEMENT
+# ================================
+
+### 7. Add Single User to Group
+# Method: POST
+# Endpoint: /api/group/{id}/users
+# Permission: GROUP_EDIT
+# Description: Add one user to a group
+POST {{baseUrl}}/api/group/1/users
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "userId": 7
+}
+
+### 8. Remove Single User from Group
+# Method: DELETE
+# Endpoint: /api/group/{id}/users
+# Permission: GROUP_EDIT
+# Description: Remove one user from a group
+DELETE {{baseUrl}}/api/group/1/users
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "userId": 7
+}
+
+### 9. Bulk Add Users to Group
+# Method: POST
+# Endpoint: /api/group/{id}/users/bulk
+# Permission: GROUP_EDIT
+# Description: Add multiple users to a group at once
+POST {{baseUrl}}/api/group/1/users/bulk
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "userIds": [8, 9, 10, 11]
+}
+
+### 10. Bulk Remove Users from Group
+# Method: DELETE
+# Endpoint: /api/group/{id}/users/bulk
+# Permission: GROUP_EDIT
+# Description: Remove multiple users from a group at once
+DELETE {{baseUrl}}/api/group/1/users/bulk
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "userIds": [8, 9]
+}
+
+### ================================
+# GROUP PERMISSION MANAGEMENT
+# ================================
+
+### 11. Bulk Add Permissions to Group
+# Method: POST
+# Endpoint: /api/group/{id}/permissions/bulk
+# Permission: GROUP_EDIT
+# Description: Add multiple permissions to a group at once
+POST {{baseUrl}}/api/group/1/permissions/bulk
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "permissionIds": [12, 13, 14, 15]
+}
+
+### 12. Bulk Remove Permissions from Group
+# Method: DELETE
+# Endpoint: /api/group/{id}/permissions/bulk
+# Permission: GROUP_EDIT
+# Description: Remove multiple permissions from a group at once
+DELETE {{baseUrl}}/api/group/1/permissions/bulk
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "permissionIds": [14, 15]
+}
+
+### ================================
+### REQUEST/RESPONSE EXAMPLES
+### ================================
+
+### Get All Permissions Response Example:
+# {
+#   "success": true,
+#   "data": {
+#     "permissions": [
+#       {
+#         "id": 1,
+#         "name": "USER_VIEW",
+#         "description": "View users"
+#       },
+#       {
+#         "id": 2,
+#         "name": "USER_CREATE",
+#         "description": "Create new users"
+#       },
+#       {
+#         "id": 3,
+#         "name": "USER_EDIT",
+#         "description": "Edit user details"
+#       },
+#       {
+#         "id": 4,
+#         "name": "USER_DELETE",
+#         "description": "Delete users"
+#       },
+#       {
+#         "id": 5,
+#         "name": "GROUP_VIEW",
+#         "description": "View groups"
+#       }
+#     ]
+#   }
+# }
+
+### Get All Groups Response Example:
+# {
+#   "success": true,
+#   "data": {
+#     "groups": [
+#       {
+#         "id": 1,
+#         "name": "Administrators",
+#         "createdAt": "2024-01-01T00:00:00.000Z",
+#         "users": [
+#           {
+#             "id": 1,
+#             "name": "Admin User",
+#             "email": "admin@example.com"
+#           }
+#         ],
+#         "permissions": [
+#           {
+#             "id": 1,
+#             "name": "USER_VIEW",
+#             "description": "View users"
+#           },
+#           {
+#             "id": 2,
+#             "name": "USER_CREATE",
+#             "description": "Create new users"
+#           }
+#         ]
+#       },
+#       {
+#         "id": 2,
+#         "name": "Editors",
+#         "createdAt": "2024-01-02T00:00:00.000Z",
+#         "users": [
+#           {
+#             "id": 2,
+#             "name": "Editor User",
+#             "email": "editor@example.com"
+#           }
+#         ],
+#         "permissions": [
+#           {
+#             "id": 8,
+#             "name": "ARTICLE_VIEW",
+#             "description": "View articles"
+#           },
+#           {
+#             "id": 9,
+#             "name": "ARTICLE_CREATE",
+#             "description": "Create articles"
+#           }
+#         ]
+#       }
+#     ]
+#   }
+# }
+
+### Create Group Response Example:
+# {
+#   "success": true,
+#   "message": "Group created successfully",
+#   "data": {
+#     "group": {
+#       "id": 4,
+#       "name": "Marketing Team",
+#       "createdAt": "2024-01-03T00:00:00.000Z",
+#       "users": [
+#         {
+#           "id": 3,
+#           "name": "User Three",
+#           "email": "user3@example.com"
+#         }
+#       ],
+#       "permissions": [
+#         {
+#           "id": 1,
+#           "name": "USER_VIEW",
+#           "description": "View users"
+#         }
+#       ]
+#     }
+#   }
+# }
+
+### Schema Requirements:
+# Group:
+# - name: string (min 2 characters)
+# - permissionIds: optional array of integers
+# - userIds: optional array of integers
+#
+# Bulk Operations:
+# - userIds: array of integers (min 1 item)
+# - permissionIds: array of integers (min 1 item)

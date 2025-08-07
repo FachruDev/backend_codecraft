@@ -1,0 +1,435 @@
+# ================================
+# MISCELLANEOUS API ENDPOINTS
+# ================================
+# Base URL: http://localhost:3000
+# Description: Additional endpoints for achievements, clients, social media, contact forms, etc.
+
+@baseUrl = http://localhost:3000
+@adminToken = {{admin_login_response.response.body.accessToken}}
+@userToken = {{user_login_response.response.body.accessToken}}
+
+### ================================
+# ACHIEVEMENTS ENDPOINTS
+# ================================
+
+### 1. Get All Achievements
+# Method: GET
+# Endpoint: /api/achievement
+# Permission: Public
+# Description: Get list of all achievements
+GET {{baseUrl}}/api/achievement
+
+### 2. Get Achievement by ID
+# Method: GET
+# Endpoint: /api/achievement/{id}
+# Permission: Public
+# Description: Get specific achievement details
+GET {{baseUrl}}/api/achievement/1
+
+### 3. Create New Achievement
+# Method: POST
+# Endpoint: /api/achievement
+# Permission: ACHIEVEMENT_CREATE
+# Description: Create a new achievement
+POST {{baseUrl}}/api/achievement
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "50+ Projects Completed",
+    "id": "50+ Proyek Diselesaikan"
+  },
+  "description": {
+    "en": "Successfully delivered over 50 projects to satisfied clients",
+    "id": "Berhasil menyelesaikan lebih dari 50 proyek untuk klien yang puas"
+  },
+  "icon": "https://example.com/icons/projects.svg",
+  "number": 50,
+  "unit": {
+    "en": "Projects",
+    "id": "Proyek"
+  }
+}
+
+### 4. Update Achievement
+# Method: PUT
+# Endpoint: /api/achievement/{id}
+# Permission: ACHIEVEMENT_EDIT
+# Description: Update existing achievement
+PUT {{baseUrl}}/api/achievement/1
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "100+ Projects Completed",
+    "id": "100+ Proyek Diselesaikan"
+  },
+  "description": {
+    "en": "Successfully delivered over 100 projects to satisfied clients",
+    "id": "Berhasil menyelesaikan lebih dari 100 proyek untuk klien yang puas"
+  },
+  "icon": "https://example.com/icons/projects-updated.svg",
+  "number": 100,
+  "unit": {
+    "en": "Projects",
+    "id": "Proyek"
+  }
+}
+
+### 5. Delete Achievement
+# Method: DELETE
+# Endpoint: /api/achievement/{id}
+# Permission: ACHIEVEMENT_DELETE
+# Description: Delete achievement
+DELETE {{baseUrl}}/api/achievement/2
+Authorization: Bearer {{adminToken}}
+
+### ================================
+# CLIENTS ENDPOINTS
+# ================================
+
+### 6. Get All Clients
+# Method: GET
+# Endpoint: /api/client
+# Permission: Public
+# Description: Get list of all clients
+GET {{baseUrl}}/api/client
+
+### 7. Get Client by ID
+# Method: GET
+# Endpoint: /api/client/{id}
+# Permission: Public
+# Description: Get specific client details
+GET {{baseUrl}}/api/client/1
+
+### 8. Create New Client
+# Method: POST
+# Endpoint: /api/client
+# Permission: CLIENT_CREATE
+# Description: Create a new client
+POST {{baseUrl}}/api/client
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "name": "Tech Corp Inc.",
+  "logo": "https://example.com/client-logos/techcorp.png",
+  "website": "https://techcorp.example.com",
+  "description": {
+    "en": "Leading technology company in Southeast Asia",
+    "id": "Perusahaan teknologi terdepan di Asia Tenggara"
+  },
+  "testimonial": {
+    "en": "Excellent service and professional team. Highly recommended!",
+    "id": "Layanan yang luar biasa dan tim yang profesional. Sangat direkomendasikan!"
+  },
+  "rating": 5
+}
+
+### 9. Update Client
+# Method: PUT
+# Endpoint: /api/client/{id}
+# Permission: CLIENT_EDIT
+# Description: Update existing client
+PUT {{baseUrl}}/api/client/1
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "name": "Tech Corp International",
+  "logo": "https://example.com/client-logos/techcorp-new.png",
+  "website": "https://techcorp-intl.example.com",
+  "description": {
+    "en": "Global technology leader with operations worldwide",
+    "id": "Pemimpin teknologi global dengan operasi di seluruh dunia"
+  },
+  "testimonial": {
+    "en": "Outstanding results and exceptional customer service!",
+    "id": "Hasil yang luar biasa dan layanan pelanggan yang luar biasa!"
+  },
+  "rating": 5
+}
+
+### 10. Delete Client
+# Method: DELETE
+# Endpoint: /api/client/{id}
+# Permission: CLIENT_DELETE
+# Description: Delete client
+DELETE {{baseUrl}}/api/client/3
+Authorization: Bearer {{adminToken}}
+
+### ================================
+# SOCIAL MEDIA ENDPOINTS
+# ================================
+
+### 11. Get All Social Media
+# Method: GET
+# Endpoint: /api/social-media
+# Permission: Public
+# Description: Get list of all social media links
+GET {{baseUrl}}/api/social-media
+
+### 12. Get Social Media by ID
+# Method: GET
+# Endpoint: /api/social-media/{id}
+# Permission: Public
+# Description: Get specific social media details
+GET {{baseUrl}}/api/social-media/1
+
+### 13. Create New Social Media
+# Method: POST
+# Endpoint: /api/social-media
+# Permission: SOCIAL_MEDIA_CREATE
+# Description: Create a new social media link
+POST {{baseUrl}}/api/social-media
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "platform": "Instagram",
+  "url": "https://instagram.com/digitalagencypro",
+  "icon": "https://example.com/icons/instagram.svg",
+  "isActive": true
+}
+
+### 14. Update Social Media
+# Method: PUT
+# Endpoint: /api/social-media/{id}
+# Permission: SOCIAL_MEDIA_EDIT
+# Description: Update existing social media link
+PUT {{baseUrl}}/api/social-media/1
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "platform": "Instagram",
+  "url": "https://instagram.com/digitalagencypro_official",
+  "icon": "https://example.com/icons/instagram-new.svg",
+  "isActive": true
+}
+
+### 15. Delete Social Media
+# Method: DELETE
+# Endpoint: /api/social-media/{id}
+# Permission: SOCIAL_MEDIA_DELETE
+# Description: Delete social media link
+DELETE {{baseUrl}}/api/social-media/2
+Authorization: Bearer {{adminToken}}
+
+### ================================
+# CALL TO ACTION ENDPOINTS
+# ================================
+
+### 16. Get All Call to Actions
+# Method: GET
+# Endpoint: /api/call-to-action
+# Permission: Public
+# Description: Get list of all call-to-action buttons
+GET {{baseUrl}}/api/call-to-action
+
+### 17. Create New Call to Action
+# Method: POST
+# Endpoint: /api/call-to-action
+# Permission: CALL_TO_ACTION_CREATE
+# Description: Create a new call-to-action
+POST {{baseUrl}}/api/call-to-action
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "Start Your Project Today",
+    "id": "Mulai Proyek Anda Hari Ini"
+  },
+  "description": {
+    "en": "Ready to transform your business? Get in touch with us now!",
+    "id": "Siap mengubah bisnis Anda? Hubungi kami sekarang!"
+  },
+  "buttonText": {
+    "en": "Contact Us Now",
+    "id": "Hubungi Kami Sekarang"
+  },
+  "buttonLink": "/contact",
+  "backgroundColor": "#007bff",
+  "textColor": "#ffffff"
+}
+
+### ================================
+# CONTACT FORM ENDPOINTS
+# ================================
+
+### 18. Get All Contact Form Submissions
+# Method: GET
+# Endpoint: /api/contact-form
+# Permission: CONTACT_FORM_VIEW
+# Description: Get list of all contact form submissions (Admin only)
+GET {{baseUrl}}/api/contact-form
+Authorization: Bearer {{adminToken}}
+
+### 19. Get Contact Form by ID
+# Method: GET
+# Endpoint: /api/contact-form/{id}
+# Permission: CONTACT_FORM_VIEW
+# Description: Get specific contact form submission
+GET {{baseUrl}}/api/contact-form/1
+Authorization: Bearer {{adminToken}}
+
+### 20. Submit Contact Form
+# Method: POST
+# Endpoint: /api/contact-form
+# Permission: Public
+# Description: Submit a new contact form (Public access)
+POST {{baseUrl}}/api/contact-form
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "phoneNumber": "+628123456789",
+  "subject": "Website Development Inquiry",
+  "message": "Hello, I'm interested in developing a website for my business. Could you please provide more information about your services and pricing?"
+}
+
+### 21. Update Contact Form Status
+# Method: PUT
+# Endpoint: /api/contact-form/{id}
+# Permission: CONTACT_FORM_EDIT
+# Description: Update contact form submission status (Admin only)
+PUT {{baseUrl}}/api/contact-form/1
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "status": "responded",
+  "adminNotes": "Contacted client via phone and scheduled meeting for next week"
+}
+
+### 22. Delete Contact Form
+# Method: DELETE
+# Endpoint: /api/contact-form/{id}
+# Permission: CONTACT_FORM_DELETE
+# Description: Delete contact form submission
+DELETE {{baseUrl}}/api/contact-form/2
+Authorization: Bearer {{adminToken}}
+
+### ================================
+# SEO METADATA ENDPOINTS
+# ================================
+
+### 23. Get All SEO Metadata
+# Method: GET
+# Endpoint: /api/seo-metadata
+# Permission: Public
+# Description: Get list of all SEO metadata for different pages
+GET {{baseUrl}}/api/seo-metadata
+
+### 24. Get SEO Metadata by Page
+# Method: GET
+# Endpoint: /api/seo-metadata/{page}
+# Permission: Public
+# Description: Get SEO metadata for specific page
+GET {{baseUrl}}/api/seo-metadata/homepage
+
+### 25. Create/Update SEO Metadata
+# Method: POST
+# Endpoint: /api/seo-metadata
+# Permission: SEO_METADATA_EDIT
+# Description: Create or update SEO metadata for a page
+POST {{baseUrl}}/api/seo-metadata
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "page": "about",
+  "title": {
+    "en": "About Us - Digital Agency Pro | Leading Web Development Company",
+    "id": "Tentang Kami - Digital Agency Pro | Perusahaan Pengembangan Web Terdepan"
+  },
+  "description": {
+    "en": "Learn about Digital Agency Pro, a leading web development company with expert team and quality services. Transform your business with our digital solutions.",
+    "id": "Pelajari tentang Digital Agency Pro, perusahaan pengembangan web terdepan dengan tim ahli dan layanan berkualitas. Transformasikan bisnis Anda dengan solusi digital kami."
+  },
+  "keywords": {
+    "en": "digital agency, web development, about us, expert team, quality service",
+    "id": "agensi digital, pengembangan web, tentang kami, tim ahli, layanan berkualitas"
+  },
+  "ogImage": "https://example.com/og-images/about.jpg",
+  "canonicalUrl": "https://digitalagencypro.com/about"
+}
+
+### ================================
+### REQUEST/RESPONSE EXAMPLES
+### ================================
+
+### Get All Contact Forms Response Example:
+# {
+#   "success": true,
+#   "data": {
+#     "contactForms": [
+#       {
+#         "id": 1,
+#         "name": "John Doe",
+#         "email": "john.doe@example.com",
+#         "phoneNumber": "+628123456789",
+#         "subject": "Website Development Inquiry",
+#         "message": "Hello, I'm interested in developing a website...",
+#         "status": "new",
+#         "adminNotes": null,
+#         "createdAt": "2024-01-15T10:30:00.000Z"
+#       }
+#     ],
+#     "pagination": {
+#       "page": 1,
+#       "limit": 10,
+#       "total": 25,
+#       "totalPages": 3
+#     }
+#   }
+# }
+
+### Submit Contact Form Response Example:
+# {
+#   "success": true,
+#   "message": "Contact form submitted successfully. We'll get back to you soon!",
+#   "data": {
+#     "id": 26,
+#     "name": "John Doe",
+#     "email": "john.doe@example.com",
+#     "phoneNumber": "+628123456789",
+#     "subject": "Website Development Inquiry",
+#     "status": "new",
+#     "createdAt": "2024-01-15T15:45:00.000Z"
+#   }
+# }
+
+### Schema Requirements:
+# Achievement:
+# - title: object with language keys - required
+# - description: object with language keys - required
+# - icon: valid URL string - optional
+# - number: integer - optional
+# - unit: object with language keys - optional
+#
+# Client:
+# - name: string - required
+# - logo: valid URL string - optional
+# - website: valid URL string - optional
+# - description: object with language keys - optional
+# - testimonial: object with language keys - optional
+# - rating: integer (1-5) - optional
+#
+# Contact Form:
+# - name: string - required
+# - email: valid email - required
+# - phoneNumber: string - required
+# - subject: string - required
+# - message: string - required
+# - status: enum (new, in_progress, responded, closed) - system managed
+#
+# Social Media:
+# - platform: string - required
+# - url: valid URL string - required
+# - icon: valid URL string - optional
+# - isActive: boolean - optional, default true

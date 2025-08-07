@@ -1,0 +1,376 @@
+# ================================
+# WEBSITE CONTENT MANAGEMENT API ENDPOINTS
+# ================================
+# Base URL: http://localhost:3000
+# Description: Website content and settings management endpoints (Singleton data)
+
+@baseUrl = http://localhost:3000
+@adminToken = {{admin_login_response.response.body.accessToken}}
+@editorToken = {{editor_login_response.response.body.accessToken}}
+
+### ================================
+# HERO SECTION ENDPOINTS
+# ================================
+
+### 1. Get Hero Section
+# Method: GET
+# Endpoint: /api/hero-section
+# Permission: Public
+# Description: Get hero section content
+GET {{baseUrl}}/api/hero-section
+
+### 2. Update Hero Section
+# Method: PUT
+# Endpoint: /api/hero-section
+# Permission: HERO_SECTION_EDIT
+# Description: Update hero section content
+PUT {{baseUrl}}/api/hero-section
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "Welcome to Our Digital Agency",
+    "id": "Selamat Datang di Agensi Digital Kami"
+  },
+  "subtitle": {
+    "en": "We create amazing digital experiences",
+    "id": "Kami menciptakan pengalaman digital yang menakjubkan"
+  },
+  "description": {
+    "en": "Transform your business with our cutting-edge technology solutions",
+    "id": "Transformasikan bisnis Anda dengan solusi teknologi canggih kami"
+  },
+  "backgroundImage": "https://example.com/hero-bg.jpg",
+  "ctaText": {
+    "en": "Get Started",
+    "id": "Mulai Sekarang"
+  },
+  "ctaLink": "/contact"
+}
+
+### ================================
+# ABOUT US SECTION ENDPOINTS
+# ================================
+
+### 3. Get About Us
+# Method: GET
+# Endpoint: /api/about-our
+# Permission: Public
+# Description: Get about us section content
+GET {{baseUrl}}/api/about-our
+
+### 4. Update About Us
+# Method: PUT
+# Endpoint: /api/about-our
+# Permission: ABOUT_OUR_EDIT
+# Description: Update about us section content
+PUT {{baseUrl}}/api/about-our
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "About Our Company",
+    "id": "Tentang Perusahaan Kami"
+  },
+  "description": {
+    "en": "We are a team of passionate developers and designers...",
+    "id": "Kami adalah tim pengembang dan desainer yang bersemangat..."
+  },
+  "mission": {
+    "en": "To deliver innovative digital solutions that drive business growth",
+    "id": "Memberikan solusi digital inovatif yang mendorong pertumbuhan bisnis"
+  },
+  "vision": {
+    "en": "To be the leading digital agency in the region",
+    "id": "Menjadi agensi digital terdepan di wilayah ini"
+  },
+  "teamImage": "https://example.com/team-photo.jpg"
+}
+
+### ================================
+# CONTACT INFORMATION ENDPOINTS
+# ================================
+
+### 5. Get Contact Information
+# Method: GET
+# Endpoint: /api/contact-information
+# Permission: Public
+# Description: Get contact information
+GET {{baseUrl}}/api/contact-information
+
+### 6. Update Contact Information
+# Method: PUT
+# Endpoint: /api/contact-information
+# Permission: CONTACT_INFORMATION_EDIT
+# Description: Update contact information
+PUT {{baseUrl}}/api/contact-information
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "email": "contact@example.com",
+  "phoneNumber": "+62812345678900",
+  "ourOffice": "Jakarta, Indonesia",
+  "address": {
+    "en": "123 Business Street, Jakarta 12345, Indonesia",
+    "id": "Jalan Bisnis 123, Jakarta 12345, Indonesia"
+  },
+  "workingHours": {
+    "en": "Monday - Friday: 9:00 AM - 6:00 PM",
+    "id": "Senin - Jumat: 09:00 - 18:00"
+  }
+}
+
+### ================================
+# CONTACT SECTION ENDPOINTS
+# ================================
+
+### 7. Get Contact Section
+# Method: GET
+# Endpoint: /api/contact-section
+# Permission: Public
+# Description: Get contact section content
+GET {{baseUrl}}/api/contact-section
+
+### 8. Update Contact Section
+# Method: PUT
+# Endpoint: /api/contact-section
+# Permission: CONTACT_SECTION_EDIT
+# Description: Update contact section content
+PUT {{baseUrl}}/api/contact-section
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "Get In Touch",
+    "id": "Hubungi Kami"
+  },
+  "subtitle": {
+    "en": "Ready to start your project?",
+    "id": "Siap untuk memulai proyek Anda?"
+  },
+  "description": {
+    "en": "Contact us today for a free consultation",
+    "id": "Hubungi kami hari ini untuk konsultasi gratis"
+  }
+}
+
+### ================================
+# PORTFOLIO SECTION ENDPOINTS
+# ================================
+
+### 9. Get Portfolio Section
+# Method: GET
+# Endpoint: /api/portfolio-section
+# Permission: Public
+# Description: Get portfolio section content
+GET {{baseUrl}}/api/portfolio-section
+
+### 10. Update Portfolio Section
+# Method: PUT
+# Endpoint: /api/portfolio-section
+# Permission: PORTFOLIO_SECTION_EDIT
+# Description: Update portfolio section content
+PUT {{baseUrl}}/api/portfolio-section
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "Our Portfolio",
+    "id": "Portofolio Kami"
+  },
+  "subtitle": {
+    "en": "Showcasing our best work",
+    "id": "Menampilkan karya terbaik kami"
+  },
+  "description": {
+    "en": "Explore our diverse range of successful projects",
+    "id": "Jelajahi beragam proyek sukses kami"
+  }
+}
+
+### ================================
+# WHY CHOOSE US SECTION ENDPOINTS
+# ================================
+
+### 11. Get Why Choose Us
+# Method: GET
+# Endpoint: /api/why-we
+# Permission: Public
+# Description: Get why choose us section content
+GET {{baseUrl}}/api/why-we
+
+### 12. Update Why Choose Us
+# Method: PUT
+# Endpoint: /api/why-we
+# Permission: WHY_WE_EDIT
+# Description: Update why choose us section content
+PUT {{baseUrl}}/api/why-we
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "Why Choose Us",
+    "id": "Mengapa Memilih Kami"
+  },
+  "reasons": [
+    {
+      "title": {
+        "en": "Expert Team",
+        "id": "Tim Ahli"
+      },
+      "description": {
+        "en": "Our team consists of experienced professionals",
+        "id": "Tim kami terdiri dari profesional berpengalaman"
+      },
+      "icon": "https://example.com/icons/expert-team.svg"
+    },
+    {
+      "title": {
+        "en": "Quality Assurance",
+        "id": "Jaminan Kualitas"
+      },
+      "description": {
+        "en": "We ensure high-quality deliverables in every project",
+        "id": "Kami memastikan hasil berkualitas tinggi di setiap proyek"
+      },
+      "icon": "https://example.com/icons/quality.svg"
+    }
+  ]
+}
+
+### ================================
+# WEB SETTINGS ENDPOINTS
+# ================================
+
+### 13. Get Web Settings
+# Method: GET
+# Endpoint: /api/web-setting
+# Permission: Public
+# Description: Get website general settings
+GET {{baseUrl}}/api/web-setting
+
+### 14. Update Web Settings
+# Method: PUT
+# Endpoint: /api/web-setting
+# Permission: WEB_SETTING_EDIT
+# Description: Update website general settings
+PUT {{baseUrl}}/api/web-setting
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "siteName": {
+    "en": "Digital Agency Pro",
+    "id": "Agensi Digital Pro"
+  },
+  "tagline": {
+    "en": "Your Digital Success Partner",
+    "id": "Partner Kesuksesan Digital Anda"
+  },
+  "logo": "https://example.com/logo.png",
+  "favicon": "https://example.com/favicon.ico",
+  "primaryColor": "#007bff",
+  "secondaryColor": "#6c757d",
+  "footerText": {
+    "en": "© 2024 Digital Agency Pro. All rights reserved.",
+    "id": "© 2024 Agensi Digital Pro. Hak cipta dilindungi."
+  }
+}
+
+### ================================
+# SERVICE SECTION ENDPOINTS
+# ================================
+
+### 15. Get Service Section
+# Method: GET
+# Endpoint: /api/service-section
+# Permission: Public
+# Description: Get service section content
+GET {{baseUrl}}/api/service-section
+
+### 16. Update Service Section
+# Method: PUT
+# Endpoint: /api/service-section
+# Permission: SERVICE_SECTION_EDIT
+# Description: Update service section content
+PUT {{baseUrl}}/api/service-section
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "Our Services",
+    "id": "Layanan Kami"
+  },
+  "subtitle": {
+    "en": "Complete digital solutions for your business",
+    "id": "Solusi digital lengkap untuk bisnis Anda"
+  }
+}
+
+### ================================
+### REQUEST/RESPONSE EXAMPLES
+### ================================
+
+### Get Contact Information Response Example:
+# {
+#   "success": true,
+#   "data": {
+#     "id": 1,
+#     "email": "contact@example.com",
+#     "phoneNumber": "+62812345678900",
+#     "ourOffice": "Jakarta, Indonesia",
+#     "address": {
+#       "en": "123 Business Street, Jakarta 12345, Indonesia",
+#       "id": "Jalan Bisnis 123, Jakarta 12345, Indonesia"
+#     },
+#     "workingHours": {
+#       "en": "Monday - Friday: 9:00 AM - 6:00 PM",
+#       "id": "Senin - Jumat: 09:00 - 18:00"
+#     },
+#     "updatedAt": "2024-01-15T10:30:00.000Z"
+#   }
+# }
+
+### Get Hero Section Response Example:
+# {
+#   "success": true,
+#   "data": {
+#     "id": 1,
+#     "title": {
+#       "en": "Welcome to Our Digital Agency",
+#       "id": "Selamat Datang di Agensi Digital Kami"
+#     },
+#     "subtitle": {
+#       "en": "We create amazing digital experiences",
+#       "id": "Kami menciptakan pengalaman digital yang menakjubkan"
+#     },
+#     "description": {
+#       "en": "Transform your business with our cutting-edge technology solutions",
+#       "id": "Transformasikan bisnis Anda dengan solusi teknologi canggih kami"
+#     },
+#     "backgroundImage": "https://example.com/hero-bg.jpg",
+#     "ctaText": {
+#       "en": "Get Started",
+#       "id": "Mulai Sekarang"
+#     },
+#     "ctaLink": "/contact",
+#     "updatedAt": "2024-01-15T09:00:00.000Z"
+#   }
+# }
+
+### Schema Requirements:
+# All singleton endpoints support multilingual content using language keys (en, id)
+# Common fields:
+# - title: object with language keys
+# - description: object with language keys
+# - Images/media: valid URL strings
+# - Colors: hex color codes
+# - Contact info: email, phone number, address fields
+# - All singleton data is upserted (create if not exists, update if exists)
