@@ -1,0 +1,188 @@
+# ================================
+# AUTHENTICATION API ENDPOINTS
+# ================================
+# Base URL: http://localhost:3000
+# Description: Authentication and user session management endpoints
+
+@baseUrl = http://localhost:3000
+@token = {{login_response.response.body.accessToken}}
+
+### Health Check
+# Description: Check if server is running
+GET {{baseUrl}}/health
+
+### 1. Register New User
+# Method: POST
+# Endpoint: /api/auth/register
+# Permission: Public
+# Description: Register a new user account
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "password": "securePassword123",
+  "profile": "https://example.com/profile.jpg",
+  "bio": "Software Developer and Tech Enthusiast",
+  "role": "user",
+  "groupIds": [1, 2]
+}
+
+### 2. Login with Admin Credentials
+# Method: POST
+# Endpoint: /api/auth/login
+# Permission: Public
+# Description: Authenticate user and get access token
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "admin123"
+}
+
+### 3. Login with Editor Credentials
+# Method: POST
+# Endpoint: /api/auth/login
+# Permission: Public
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "editor@example.com",
+  "password": "editor123"
+}
+
+### 4. Login with Regular User Credentials
+# Method: POST
+# Endpoint: /api/auth/login
+# Permission: Public
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "user123"
+}
+
+### 5. Get Current User Profile
+# Method: GET
+# Endpoint: /api/auth/me
+# Permission: Authenticated users only
+# Description: Get current logged-in user's profile information
+GET {{baseUrl}}/api/auth/me
+Authorization: Bearer {{token}}
+
+### 6. Verify Token
+# Method: GET
+# Endpoint: /api/auth/verify
+# Permission: Authenticated users only
+# Description: Verify if current token is valid and active
+GET {{baseUrl}}/api/auth/verify
+Authorization: Bearer {{token}}
+
+### 7. Refresh Access Token
+# Method: POST
+# Endpoint: /api/auth/refresh
+# Permission: Public (requires refresh token)
+# Description: Get new access token using refresh token
+POST {{baseUrl}}/api/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "your_refresh_token_here"
+}
+
+### 8. Logout from Current Device
+# Method: POST
+# Endpoint: /api/auth/logout
+# Permission: Authenticated users only
+# Description: Logout from current device/session
+POST {{baseUrl}}/api/auth/logout
+Authorization: Bearer {{token}}
+
+### 9. Logout with Refresh Token
+# Method: POST
+# Endpoint: /api/auth/logout
+# Permission: Authenticated users only
+# Description: Logout and invalidate refresh token
+POST {{baseUrl}}/api/auth/logout
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "refreshToken": "your_refresh_token_here"
+}
+
+### 10. Logout from All Devices
+# Method: POST
+# Endpoint: /api/auth/logout-all
+# Permission: Authenticated users only
+# Description: Logout from all devices and invalidate all tokens
+POST {{baseUrl}}/api/auth/logout-all
+Authorization: Bearer {{token}}
+
+### 11. Get User's Active Tokens
+# Method: GET
+# Endpoint: /api/auth/tokens
+# Permission: Authenticated users only
+# Description: Get list of all active tokens for current user
+GET {{baseUrl}}/api/auth/tokens
+Authorization: Bearer {{token}}
+
+### ================================
+### REQUEST/RESPONSE EXAMPLES
+### ================================
+
+### Register Response Example:
+# {
+#   "success": true,
+#   "message": "User registered successfully",
+#   "data": {
+#     "user": {
+#       "id": 1,
+#       "name": "John Doe",
+#       "email": "john.doe@example.com",
+#       "profile": "https://example.com/profile.jpg",
+#       "bio": "Software Developer and Tech Enthusiast",
+#       "role": "user",
+#       "createdAt": "2024-01-01T00:00:00.000Z"
+#     }
+#   }
+# }
+
+### Login Response Example:
+# {
+#   "success": true,
+#   "message": "Login successful",
+#   "data": {
+#     "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+#     "refreshToken": "refresh_token_here",
+#     "user": {
+#       "id": 1,
+#       "name": "John Doe",
+#       "email": "john.doe@example.com",
+#       "role": "user"
+#     }
+#   }
+# }
+
+### Profile Response Example:
+# {
+#   "success": true,
+#   "data": {
+#     "id": 1,
+#     "name": "John Doe",
+#     "email": "john.doe@example.com",
+#     "profile": "https://example.com/profile.jpg",
+#     "bio": "Software Developer and Tech Enthusiast",
+#     "role": "user",
+#     "groups": [
+#       {
+#         "id": 1,
+#         "name": "Developers"
+#       }
+#     ]
+#   }
+# }

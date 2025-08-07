@@ -1,0 +1,302 @@
+# ================================
+# ARTICLES & CATEGORIES API ENDPOINTS
+# ================================
+# Base URL: http://localhost:3000
+# Description: Article management and categorization endpoints
+
+@baseUrl = http://localhost:3000
+@adminToken = {{admin_login_response.response.body.accessToken}}
+@editorToken = {{editor_login_response.response.body.accessToken}}
+
+### ================================
+# ARTICLE CATEGORIES ENDPOINTS
+# ================================
+
+### 1. Get All Article Categories
+# Method: GET
+# Endpoint: /api/article-category
+# Permission: Public
+# Description: Get list of all article categories
+GET {{baseUrl}}/api/article-category
+
+### 2. Get Article Category by ID
+# Method: GET
+# Endpoint: /api/article-category/{id}
+# Permission: Public
+# Description: Get specific article category details
+GET {{baseUrl}}/api/article-category/1
+
+### 3. Create New Article Category
+# Method: POST
+# Endpoint: /api/article-category
+# Permission: ARTICLE_CATEGORY_CREATE
+# Description: Create a new article category
+POST {{baseUrl}}/api/article-category
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "name": {
+    "en": "Technology",
+    "id": "Teknologi"
+  },
+  "description": {
+    "en": "Articles about latest technology trends and innovations",
+    "id": "Artikel tentang tren dan inovasi teknologi terbaru"
+  }
+}
+
+### 4. Update Article Category
+# Method: PUT
+# Endpoint: /api/article-category/{id}
+# Permission: ARTICLE_CATEGORY_EDIT
+# Description: Update existing article category
+PUT {{baseUrl}}/api/article-category/1
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "name": {
+    "en": "Advanced Technology",
+    "id": "Teknologi Canggih"
+  },
+  "description": {
+    "en": "Advanced articles about cutting-edge technology",
+    "id": "Artikel lanjutan tentang teknologi canggih"
+  }
+}
+
+### 5. Delete Article Category
+# Method: DELETE
+# Endpoint: /api/article-category/{id}
+# Permission: ARTICLE_CATEGORY_DELETE
+# Description: Delete article category
+DELETE {{baseUrl}}/api/article-category/2
+Authorization: Bearer {{adminToken}}
+
+### ================================
+# ARTICLES ENDPOINTS
+# ================================
+
+### 6. Get All Articles
+# Method: GET
+# Endpoint: /api/article
+# Permission: Public
+# Description: Get list of all published articles (public access)
+GET {{baseUrl}}/api/article
+
+### 7. Get All Articles with Query Parameters
+# Method: GET
+# Endpoint: /api/article
+# Permission: Public
+# Description: Get articles with filtering and pagination
+GET {{baseUrl}}/api/article?status=PUBLISHED&categoryId=1&page=1&limit=10&search=technology
+
+### 8. Get Article by ID
+# Method: GET
+# Endpoint: /api/article/{id}
+# Permission: Public
+# Description: Get specific article details
+GET {{baseUrl}}/api/article/1
+
+### 9. Create New Article
+# Method: POST
+# Endpoint: /api/article
+# Permission: ARTICLE_CREATE
+# Description: Create a new article
+POST {{baseUrl}}/api/article
+Authorization: Bearer {{editorToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "The Future of Artificial Intelligence",
+    "id": "Masa Depan Kecerdasan Buatan"
+  },
+  "subtitle": {
+    "en": "Exploring the possibilities and challenges ahead",
+    "id": "Menjelajahi kemungkinan dan tantangan yang ada"
+  },
+  "coverImage": "https://example.com/articles/ai-future-cover.jpg",
+  "content": {
+    "en": "<h1>Introduction</h1><p>Artificial Intelligence is transforming our world...</p>",
+    "id": "<h1>Pendahuluan</h1><p>Kecerdasan Buatan mengubah dunia kita...</p>"
+  },
+  "rate": 4,
+  "status": "DRAFT",
+  "dateUpload": "2024-01-15T10:00:00.000Z",
+  "authorId": 2,
+  "categoryId": 1
+}
+
+### 10. Update Article
+# Method: PUT
+# Endpoint: /api/article/{id}
+# Permission: ARTICLE_EDIT
+# Description: Update existing article
+PUT {{baseUrl}}/api/article/1
+Authorization: Bearer {{editorToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "The Future of AI and Machine Learning",
+    "id": "Masa Depan AI dan Machine Learning"
+  },
+  "subtitle": {
+    "en": "An updated perspective on AI development",
+    "id": "Perspektif terbaru tentang pengembangan AI"
+  },
+  "coverImage": "https://example.com/articles/ai-ml-future-cover.jpg",
+  "content": {
+    "en": "<h1>Updated Introduction</h1><p>The landscape of AI has evolved...</p>",
+    "id": "<h1>Pendahuluan Terbaru</h1><p>Lanskap AI telah berkembang...</p>"
+  },
+  "rate": 5,
+  "status": "PUBLISHED",
+  "categoryId": 1
+}
+
+### 11. Delete Article
+# Method: DELETE
+# Endpoint: /api/article/{id}
+# Permission: ARTICLE_DELETE
+# Description: Delete article
+DELETE {{baseUrl}}/api/article/3
+Authorization: Bearer {{adminToken}}
+
+### 12. Publish Article
+# Method: PUT
+# Endpoint: /api/article/{id}
+# Permission: ARTICLE_EDIT
+# Description: Change article status to published
+PUT {{baseUrl}}/api/article/2
+Authorization: Bearer {{editorToken}}
+Content-Type: application/json
+
+{
+  "status": "PUBLISHED",
+  "dateUpload": "2024-01-16T08:30:00.000Z"
+}
+
+### 13. Archive Article
+# Method: PUT
+# Endpoint: /api/article/{id}
+# Permission: ARTICLE_EDIT
+# Description: Change article status to archived
+PUT {{baseUrl}}/api/article/4
+Authorization: Bearer {{editorToken}}
+Content-Type: application/json
+
+{
+  "status": "ARCHIVED"
+}
+
+### ================================
+### REQUEST/RESPONSE EXAMPLES
+### ================================
+
+### Get All Articles Response Example:
+# {
+#   "success": true,
+#   "data": {
+#     "articles": [
+#       {
+#         "id": 1,
+#         "title": {
+#           "en": "The Future of AI and Machine Learning",
+#           "id": "Masa Depan AI dan Machine Learning"
+#         },
+#         "subtitle": {
+#           "en": "An updated perspective on AI development",
+#           "id": "Perspektif terbaru tentang pengembangan AI"
+#         },
+#         "coverImage": "https://example.com/articles/ai-ml-future-cover.jpg",
+#         "content": {
+#           "en": "<h1>Updated Introduction</h1><p>The landscape of AI has evolved...</p>",
+#           "id": "<h1>Pendahuluan Terbaru</h1><p>Lanskap AI telah berkembang...</p>"
+#         },
+#         "rate": 5,
+#         "status": "PUBLISHED",
+#         "dateUpload": "2024-01-16T08:30:00.000Z",
+#         "createdAt": "2024-01-15T10:00:00.000Z",
+#         "updatedAt": "2024-01-16T08:30:00.000Z",
+#         "author": {
+#           "id": 2,
+#           "name": "Editor User",
+#           "email": "editor@example.com"
+#         },
+#         "category": {
+#           "id": 1,
+#           "name": {
+#             "en": "Advanced Technology",
+#             "id": "Teknologi Canggih"
+#           }
+#         }
+#       }
+#     ],
+#     "pagination": {
+#       "page": 1,
+#       "limit": 10,
+#       "total": 15,
+#       "totalPages": 2
+#     }
+#   }
+# }
+
+### Create Article Response Example:
+# {
+#   "success": true,
+#   "message": "Article created successfully",
+#   "data": {
+#     "article": {
+#       "id": 5,
+#       "title": {
+#         "en": "The Future of Artificial Intelligence",
+#         "id": "Masa Depan Kecerdasan Buatan"
+#       },
+#       "subtitle": {
+#         "en": "Exploring the possibilities and challenges ahead",
+#         "id": "Menjelajahi kemungkinan dan tantangan yang ada"
+#       },
+#       "coverImage": "https://example.com/articles/ai-future-cover.jpg",
+#       "rate": 4,
+#       "status": "DRAFT",
+#       "dateUpload": "2024-01-15T10:00:00.000Z",
+#       "createdAt": "2024-01-15T10:00:00.000Z",
+#       "author": {
+#         "id": 2,
+#         "name": "Editor User",
+#         "email": "editor@example.com"
+#       },
+#       "category": {
+#         "id": 1,
+#         "name": {
+#           "en": "Advanced Technology",
+#           "id": "Teknologi Canggih"
+#         }
+#       }
+#     }
+#   }
+# }
+
+### Schema Requirements:
+# Article:
+# - title: object with language keys (en, id) - required
+# - subtitle: object with language keys (en, id) - required
+# - coverImage: valid URL string - required
+# - content: object with language keys (en, id) - required
+# - rate: integer (0-5) - optional, default 0
+# - status: enum (PUBLISHED, DRAFT, ARCHIVED) - optional, default DRAFT
+# - dateUpload: ISO datetime string - optional
+# - authorId: integer - required
+# - categoryId: integer - required
+#
+# Article Category:
+# - name: object with language keys (en, id) - required
+# - description: object with language keys (en, id) - optional
+#
+# Article Status Values:
+# - PUBLISHED: Article is live and visible to public
+# - DRAFT: Article is being worked on, not visible to public
+# - ARCHIVED: Article is hidden but preserved

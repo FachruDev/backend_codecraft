@@ -1,0 +1,191 @@
+# ================================
+# USER MANAGEMENT API ENDPOINTS
+# ================================
+# Base URL: http://localhost:3000
+# Description: User management endpoints for admin operations
+
+@baseUrl = http://localhost:3000
+@adminToken = {{admin_login_response.response.body.accessToken}}
+
+### 1. Get All Users
+# Method: GET
+# Endpoint: /api/user
+# Permission: USER_VIEW
+# Description: Get list of all users (Admin only)
+GET {{baseUrl}}/api/user
+Authorization: Bearer {{adminToken}}
+
+### 2. Get User by ID
+# Method: GET
+# Endpoint: /api/user/{id}
+# Permission: USER_VIEW
+# Description: Get specific user details by ID (Admin only)
+GET {{baseUrl}}/api/user/1
+Authorization: Bearer {{adminToken}}
+
+### 3. Create New User
+# Method: POST
+# Endpoint: /api/user
+# Permission: USER_CREATE
+# Description: Create a new user (Admin only)
+POST {{baseUrl}}/api/user
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "name": "Jane Smith",
+  "email": "jane.smith@example.com",
+  "password": "securePassword456",
+  "profile": "https://example.com/jane-profile.jpg",
+  "bio": "Marketing Specialist with 5 years experience",
+  "role": "editor",
+  "groupIds": [2, 3]
+}
+
+### 4. Update User by ID
+# Method: PUT
+# Endpoint: /api/user/{id}
+# Permission: USER_EDIT
+# Description: Update existing user details (Admin only)
+PUT {{baseUrl}}/api/user/2
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "name": "Jane Smith Updated",
+  "email": "jane.updated@example.com",
+  "profile": "https://example.com/jane-new-profile.jpg",
+  "bio": "Senior Marketing Specialist",
+  "role": "admin",
+  "groupIds": [1, 2, 3]
+}
+
+### 5. Delete User by ID
+# Method: DELETE
+# Endpoint: /api/user/{id}
+# Permission: USER_DELETE
+# Description: Delete user account (Admin only)
+DELETE {{baseUrl}}/api/user/3
+Authorization: Bearer {{adminToken}}
+
+### ================================
+# PROFILE MANAGEMENT ENDPOINTS
+# ================================
+# Description: User profile self-management endpoints
+
+### 6. Get Own Profile
+# Method: GET
+# Endpoint: /api/profile/me
+# Permission: Authenticated users only
+# Description: Get current user's own profile
+GET {{baseUrl}}/api/profile/me
+Authorization: Bearer {{adminToken}}
+
+### 7. Update Own Profile
+# Method: PUT
+# Endpoint: /api/profile/me
+# Permission: Authenticated users only
+# Description: Update current user's own profile
+PUT {{baseUrl}}/api/profile/me
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "name": "Updated Profile Name",
+  "email": "updated.email@example.com",
+  "bio": "Updated bio information",
+  "profile": "https://example.com/updated-profile.jpg"
+}
+
+### 8. Delete Own Profile
+# Method: DELETE
+# Endpoint: /api/profile/me
+# Permission: Authenticated users only
+# Description: Delete current user's own account
+DELETE {{baseUrl}}/api/profile/me
+Authorization: Bearer {{adminToken}}
+
+### ================================
+### REQUEST/RESPONSE EXAMPLES
+### ================================
+
+### Get All Users Response Example:
+# {
+#   "success": true,
+#   "data": {
+#     "users": [
+#       {
+#         "id": 1,
+#         "name": "Admin User",
+#         "email": "admin@example.com",
+#         "profile": "https://example.com/admin-profile.jpg",
+#         "bio": "System Administrator",
+#         "role": "admin",
+#         "createdAt": "2024-01-01T00:00:00.000Z",
+#         "groups": [
+#           {
+#             "id": 1,
+#             "name": "Administrators"
+#           }
+#         ]
+#       },
+#       {
+#         "id": 2,
+#         "name": "Editor User",
+#         "email": "editor@example.com",
+#         "profile": "https://example.com/editor-profile.jpg",
+#         "bio": "Content Editor",
+#         "role": "editor",
+#         "createdAt": "2024-01-02T00:00:00.000Z",
+#         "groups": [
+#           {
+#             "id": 2,
+#             "name": "Editors"
+#           }
+#         ]
+#       }
+#     ],
+#     "pagination": {
+#       "page": 1,
+#       "limit": 10,
+#       "total": 25,
+#       "totalPages": 3
+#     }
+#   }
+# }
+
+### Create User Response Example:
+# {
+#   "success": true,
+#   "message": "User created successfully",
+#   "data": {
+#     "user": {
+#       "id": 4,
+#       "name": "Jane Smith",
+#       "email": "jane.smith@example.com",
+#       "profile": "https://example.com/jane-profile.jpg",
+#       "bio": "Marketing Specialist with 5 years experience",
+#       "role": "editor",
+#       "createdAt": "2024-01-03T00:00:00.000Z",
+#       "groups": [
+#         {
+#           "id": 2,
+#           "name": "Editors"
+#         },
+#         {
+#           "id": 3,
+#           "name": "Marketing"
+#         }
+#       ]
+#     }
+#   }
+# }
+
+### User Schema Requirements:
+# - name: string (min 3 characters)
+# - email: valid email format
+# - password: string (min 8 characters) - only for create/update
+# - profile: optional URL string
+# - bio: optional string
+# - role: optional string (user, editor, admin)
+# - groupIds: optional array of integers

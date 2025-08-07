@@ -1,0 +1,521 @@
+# ================================
+# PORTFOLIO & SERVICES API ENDPOINTS
+# ================================
+# Base URL: http://localhost:3000
+# Description: Portfolio and services management endpoints
+
+@baseUrl = http://localhost:3000
+@adminToken = {{admin_login_response.response.body.accessToken}}
+@editorToken = {{editor_login_response.response.body.accessToken}}
+
+### ================================
+# PORTFOLIO ENDPOINTS
+# ================================
+
+### 1. Get All Portfolios
+# Method: GET
+# Endpoint: /api/portfolio
+# Permission: Public
+# Description: Get list of all portfolios (public access)
+GET {{baseUrl}}/api/portfolio
+
+### 2. Get Portfolio by ID
+# Method: GET
+# Endpoint: /api/portfolio/{id}
+# Permission: Public
+# Description: Get specific portfolio details
+GET {{baseUrl}}/api/portfolio/1
+
+### 3. Create New Portfolio
+# Method: POST
+# Endpoint: /api/portfolio
+# Permission: PORTFOLIO_CREATE
+# Description: Create a new portfolio item
+POST {{baseUrl}}/api/portfolio
+Authorization: Bearer {{editorToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "E-Commerce Website Development",
+    "id": "Pengembangan Website E-Commerce"
+  },
+  "slogan": {
+    "en": "Modern and Scalable Solution",
+    "id": "Solusi Modern dan Skalabel"
+  },
+  "subtitle": {
+    "en": "Complete online store with payment integration",
+    "id": "Toko online lengkap dengan integrasi pembayaran"
+  },
+  "media": "https://example.com/portfolio/ecommerce-preview.jpg",
+  "content": {
+    "en": "<h2>Project Overview</h2><p>We developed a full-featured e-commerce platform...</p>",
+    "id": "<h2>Tinjauan Proyek</h2><p>Kami mengembangkan platform e-commerce lengkap...</p>"
+  }
+}
+
+### 4. Update Portfolio
+# Method: PUT
+# Endpoint: /api/portfolio/{id}
+# Permission: PORTFOLIO_EDIT
+# Description: Update existing portfolio
+PUT {{baseUrl}}/api/portfolio/1
+Authorization: Bearer {{editorToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "Advanced E-Commerce Platform",
+    "id": "Platform E-Commerce Canggih"
+  },
+  "slogan": {
+    "en": "Next-Generation Shopping Experience",
+    "id": "Pengalaman Berbelanja Generasi Berikutnya"
+  },
+  "subtitle": {
+    "en": "AI-powered recommendations and seamless checkout",
+    "id": "Rekomendasi bertenaga AI dan checkout yang lancar"
+  },
+  "media": "https://example.com/portfolio/advanced-ecommerce.jpg",
+  "content": {
+    "en": "<h2>Enhanced Features</h2><p>Updated with modern AI capabilities...</p>",
+    "id": "<h2>Fitur Ditingkatkan</h2><p>Diperbarui dengan kemampuan AI modern...</p>"
+  }
+}
+
+### 5. Delete Portfolio
+# Method: DELETE
+# Endpoint: /api/portfolio/{id}
+# Permission: PORTFOLIO_DELETE
+# Description: Delete portfolio item
+DELETE {{baseUrl}}/api/portfolio/2
+Authorization: Bearer {{adminToken}}
+
+### ================================
+# SERVICES ENDPOINTS
+# ================================
+
+### 6. Get All Services
+# Method: GET
+# Endpoint: /api/service
+# Permission: Public
+# Description: Get list of all services
+GET {{baseUrl}}/api/service
+
+### 7. Get Service by ID
+# Method: GET
+# Endpoint: /api/service/{id}
+# Permission: Public
+# Description: Get specific service details
+GET {{baseUrl}}/api/service/1
+
+### 8. Create New Service
+# Method: POST
+# Endpoint: /api/service
+# Permission: SERVICE_CREATE
+# Description: Create a new service
+POST {{baseUrl}}/api/service
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "menuName": {
+    "en": "Web Development",
+    "id": "Pengembangan Web"
+  },
+  "title": {
+    "en": "Professional Web Development Services",
+    "id": "Layanan Pengembangan Web Profesional"
+  },
+  "slogan": {
+    "en": "Building Digital Success",
+    "id": "Membangun Kesuksesan Digital"
+  },
+  "subtitle": {
+    "en": "Complete web development solutions for modern businesses",
+    "id": "Solusi pengembangan web lengkap untuk bisnis modern"
+  },
+  "content": {
+    "en": "<h2>Service Overview</h2><p>We provide comprehensive web development services...</p>",
+    "id": "<h2>Tinjauan Layanan</h2><p>Kami menyediakan layanan pengembangan web komprehensif...</p>"
+  }
+}
+
+### 9. Update Service
+# Method: PUT
+# Endpoint: /api/service/{id}
+# Permission: SERVICE_EDIT
+# Description: Update existing service
+PUT {{baseUrl}}/api/service/1
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "menuName": {
+    "en": "Premium Web Development",
+    "id": "Pengembangan Web Premium"
+  },
+  "title": {
+    "en": "Premium Web Development Services",
+    "id": "Layanan Pengembangan Web Premium"
+  },
+  "slogan": {
+    "en": "Excellence in Digital Solutions",
+    "id": "Keunggulan dalam Solusi Digital"
+  },
+  "subtitle": {
+    "en": "Advanced web development with cutting-edge technologies",
+    "id": "Pengembangan web canggih dengan teknologi terdepan"
+  },
+  "content": {
+    "en": "<h2>Premium Service Features</h2><p>Our premium package includes advanced features...</p>",
+    "id": "<h2>Fitur Layanan Premium</h2><p>Paket premium kami mencakup fitur-fitur canggih...</p>"
+  }
+}
+
+### 10. Delete Service
+# Method: DELETE
+# Endpoint: /api/service/{id}
+# Permission: SERVICE_DELETE
+# Description: Delete service
+DELETE {{baseUrl}}/api/service/3
+Authorization: Bearer {{adminToken}}
+
+### ================================
+# SUB-SERVICES ENDPOINTS
+# ================================
+
+### 11. Get All Sub-Services
+# Method: GET
+# Endpoint: /api/sub-service
+# Permission: Public
+# Description: Get list of all sub-services
+GET {{baseUrl}}/api/sub-service
+
+### 12. Get Sub-Service by ID
+# Method: GET
+# Endpoint: /api/sub-service/{id}
+# Permission: Public
+# Description: Get specific sub-service details
+GET {{baseUrl}}/api/sub-service/1
+
+### 13. Create New Sub-Service
+# Method: POST
+# Endpoint: /api/sub-service
+# Permission: SUB_SERVICE_CREATE
+# Description: Create a new sub-service
+POST {{baseUrl}}/api/sub-service
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "Frontend Development",
+    "id": "Pengembangan Frontend"
+  },
+  "description": {
+    "en": "Modern frontend development with React/Vue",
+    "id": "Pengembangan frontend modern dengan React/Vue"
+  },
+  "icon": "https://example.com/icons/frontend.svg",
+  "serviceId": 1
+}
+
+### 14. Update Sub-Service
+# Method: PUT
+# Endpoint: /api/sub-service/{id}
+# Permission: SUB_SERVICE_EDIT
+# Description: Update existing sub-service
+PUT {{baseUrl}}/api/sub-service/1
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "Advanced Frontend Development",
+    "id": "Pengembangan Frontend Canggih"
+  },
+  "description": {
+    "en": "Advanced frontend with Next.js and TypeScript",
+    "id": "Frontend canggih dengan Next.js dan TypeScript"
+  },
+  "icon": "https://example.com/icons/advanced-frontend.svg",
+  "serviceId": 1
+}
+
+### 15. Delete Sub-Service
+# Method: DELETE
+# Endpoint: /api/sub-service/{id}
+# Permission: SUB_SERVICE_DELETE
+# Description: Delete sub-service
+DELETE {{baseUrl}}/api/sub-service/2
+Authorization: Bearer {{adminToken}}
+
+### ================================
+# SERVICE EXCELLENCE ENDPOINTS
+# ================================
+
+### 16. Get All Service Excellence
+# Method: GET
+# Endpoint: /api/service-excellence
+# Permission: Public
+# Description: Get list of service excellence points
+GET {{baseUrl}}/api/service-excellence
+
+### 17. Create New Service Excellence
+# Method: POST
+# Endpoint: /api/service-excellence
+# Permission: SERVICE_EXCELLENCE_CREATE
+# Description: Create a new service excellence point
+POST {{baseUrl}}/api/service-excellence
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "24/7 Customer Support",
+    "id": "Dukungan Pelanggan 24/7"
+  },
+  "description": {
+    "en": "Round-the-clock support for all our clients",
+    "id": "Dukungan sepanjang waktu untuk semua klien kami"
+  },
+  "icon": "https://example.com/icons/support.svg"
+}
+
+### 17.1. Get Service Excellence by ID
+# Method: GET
+# Endpoint: /api/service-excellence/{id}
+# Permission: Public
+# Description: Get specific service excellence details
+GET {{baseUrl}}/api/service-excellence/1
+
+### 17.2. Update Service Excellence
+# Method: PUT
+# Endpoint: /api/service-excellence/{id}
+# Permission: SERVICE_EXCELLENCE_EDIT
+# Description: Update existing service excellence
+PUT {{baseUrl}}/api/service-excellence/1
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "24/7 Premium Customer Support",
+    "id": "Dukungan Pelanggan Premium 24/7"
+  },
+  "description": {
+    "en": "Premium round-the-clock support with dedicated account manager",
+    "id": "Dukungan premium sepanjang waktu dengan manajer akun khusus"
+  },
+  "icon": "https://example.com/icons/premium-support.svg"
+}
+
+### 17.3. Delete Service Excellence
+# Method: DELETE
+# Endpoint: /api/service-excellence/{id}
+# Permission: SERVICE_EXCELLENCE_DELETE
+# Description: Delete service excellence
+DELETE {{baseUrl}}/api/service-excellence/2
+Authorization: Bearer {{adminToken}}
+
+### ================================
+# SERVICE PROCESS ENDPOINTS
+# ================================
+
+### 18. Get All Service Processes
+# Method: GET
+# Endpoint: /api/service-process
+# Permission: Public
+# Description: Get list of all service processes
+GET {{baseUrl}}/api/service-process
+
+### 19. Get Service Process by ID
+# Method: GET
+# Endpoint: /api/service-process/{id}
+# Permission: Public
+# Description: Get specific service process details
+GET {{baseUrl}}/api/service-process/1
+
+### 20. Create New Service Process
+# Method: POST
+# Endpoint: /api/service-process
+# Permission: SERVICE_PROCESS_CREATE
+# Description: Create a new service process step
+POST {{baseUrl}}/api/service-process
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "Discovery & Analysis",
+    "id": "Penemuan & Analisis"
+  },
+  "description": {
+    "en": "We analyze your business requirements and goals",
+    "id": "Kami menganalisis kebutuhan dan tujuan bisnis Anda"
+  },
+  "step": 1,
+  "icon": "https://example.com/icons/discovery.svg",
+  "duration": {
+    "en": "1-2 weeks",
+    "id": "1-2 minggu"
+  }
+}
+
+### 21. Update Service Process
+# Method: PUT
+# Endpoint: /api/service-process/{id}
+# Permission: SERVICE_PROCESS_EDIT
+# Description: Update existing service process
+PUT {{baseUrl}}/api/service-process/1
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "Enhanced Discovery & Analysis",
+    "id": "Penemuan & Analisis Mendalam"
+  },
+  "description": {
+    "en": "Comprehensive analysis of your business requirements and market research",
+    "id": "Analisis komprehensif kebutuhan bisnis dan riset pasar Anda"
+  },
+  "step": 1,
+  "icon": "https://example.com/icons/enhanced-discovery.svg",
+  "duration": {
+    "en": "2-3 weeks",
+    "id": "2-3 minggu"
+  }
+}
+
+### 22. Delete Service Process
+# Method: DELETE
+# Endpoint: /api/service-process/{id}
+# Permission: SERVICE_PROCESS_DELETE
+# Description: Delete service process
+DELETE {{baseUrl}}/api/service-process/2
+Authorization: Bearer {{adminToken}}
+
+### ================================
+# Q&A ENDPOINTS
+# ================================
+
+### 23. Get All Q&A
+# Method: GET
+# Endpoint: /api/qa
+# Permission: Public
+# Description: Get list of frequently asked questions
+GET {{baseUrl}}/api/qa
+
+### 24. Get Q&A by ID
+# Method: GET
+# Endpoint: /api/qa/{id}
+# Permission: Public
+# Description: Get specific Q&A details
+GET {{baseUrl}}/api/qa/1
+
+### 25. Create New Q&A
+# Method: POST
+# Endpoint: /api/qa
+# Permission: QA_CREATE
+# Description: Create a new FAQ item
+POST {{baseUrl}}/api/qa
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "question": {
+    "en": "How long does it take to develop a website?",
+    "id": "Berapa lama waktu yang dibutuhkan untuk mengembangkan website?"
+  },
+  "answer": {
+    "en": "Typically 2-6 weeks depending on complexity and requirements",
+    "id": "Biasanya 2-6 minggu tergantung kompleksitas dan kebutuhan"
+  }
+}
+
+### 26. Update Q&A
+# Method: PUT
+# Endpoint: /api/qa/{id}
+# Permission: QA_EDIT
+# Description: Update existing Q&A
+PUT {{baseUrl}}/api/qa/1
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "question": {
+    "en": "How long does it take to develop a complete website?",
+    "id": "Berapa lama waktu yang dibutuhkan untuk mengembangkan website lengkap?"
+  },
+  "answer": {
+    "en": "Typically 2-8 weeks depending on complexity, features, and requirements",
+    "id": "Biasanya 2-8 minggu tergantung kompleksitas, fitur, dan kebutuhan"
+  }
+}
+
+### 27. Delete Q&A
+# Method: DELETE
+# Endpoint: /api/qa/{id}
+# Permission: QA_DELETE
+# Description: Delete Q&A item
+DELETE {{baseUrl}}/api/qa/2
+Authorization: Bearer {{adminToken}}
+
+### ================================
+### REQUEST/RESPONSE EXAMPLES
+### ================================
+
+### Get All Portfolios Response Example:
+# {
+#   "success": true,
+#   "data": {
+#     "portfolios": [
+#       {
+#         "id": 1,
+#         "title": {
+#           "en": "Advanced E-Commerce Platform",
+#           "id": "Platform E-Commerce Canggih"
+#         },
+#         "slogan": {
+#           "en": "Next-Generation Shopping Experience",
+#           "id": "Pengalaman Berbelanja Generasi Berikutnya"
+#         },
+#         "subtitle": {
+#           "en": "AI-powered recommendations and seamless checkout",
+#           "id": "Rekomendasi bertenaga AI dan checkout yang lancar"
+#         },
+#         "media": "https://example.com/portfolio/advanced-ecommerce.jpg",
+#         "content": {
+#           "en": "<h2>Enhanced Features</h2><p>Updated with modern AI capabilities...</p>",
+#           "id": "<h2>Fitur Ditingkatkan</h2><p>Diperbarui dengan kemampuan AI modern...</p>"
+#         },
+#         "createdAt": "2024-01-01T00:00:00.000Z",
+#         "updatedAt": "2024-01-15T00:00:00.000Z"
+#       }
+#     ]
+#   }
+# }
+
+### Schema Requirements:
+# Portfolio:
+# - title: object with language keys (en, id) - required
+# - slogan: object with language keys (en, id) - required
+# - subtitle: object with language keys (en, id) - required
+# - media: valid URL string - required
+# - content: object with language keys (en, id) - required
+#
+# Service:
+# - menuName: object with language keys (en, id) - required
+# - title: object with language keys (en, id) - required
+# - slogan: object with language keys (en, id) - required
+# - subtitle: object with language keys (en, id) - required
+# - content: object with language keys (en, id) - required
+#
+# Sub-Service:
+# - title: object with language keys (en, id) - required
+# - description: object with language keys (en, id) - required
+# - icon: valid URL string - optional
+# - serviceId: integer - required
