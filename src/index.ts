@@ -37,6 +37,7 @@ import achievement from './routes/achievementRoutes'
 import callToAction from './routes/callToActionRoutes'
 import client from './routes/clientRoutes'
 import contactForm from './routes/contactFormRoutes'
+import portfolio from './routes/portfolioRoutes'
 
 // Load env
 dotenv.config()
@@ -96,6 +97,7 @@ app.use('/api/achievement', achievement)
 app.use('/api/call-to-action', callToAction)
 app.use('/api/client', client)
 app.use('/api/contact-form', contactForm)
+app.use('/api/portfolio', portfolio)
 
 // 404 handler
 app.use(notFound)
