@@ -39,6 +39,7 @@ import client from './routes/clientRoutes'
 import contactForm from './routes/contactFormRoutes'
 import portfolio from './routes/portfolioRoutes'
 import seoMetadata from './routes/seoMetadataRoutes'
+import socialMedia from './routes/socialMediaRoutes'
 
 // Load env
 dotenv.config()
@@ -100,6 +101,7 @@ app.use('/api/client', client)
 app.use('/api/contact-form', contactForm)
 app.use('/api/portfolio', portfolio)
 app.use('/api/seo-metadata', seoMetadata)
+app.use('/api/social-media', socialMedia)
 
 // 404 handler
 app.use(notFound)
