@@ -101,7 +101,21 @@ Untuk endpoint yang memerlukan authentication, gunakan token yang didapat dari l
 - **PUT** `/api/service/{id}` - Update service
 - **DELETE** `/api/service/{id}` - Delete service
 - **GET** `/api/sub-service` - Get semua sub-services
+- **POST** `/api/sub-service` - Create sub-service baru
+- **PUT** `/api/sub-service/{id}` - Update sub-service
+- **DELETE** `/api/sub-service/{id}` - Delete sub-service
+- **GET** `/api/service-excellence` - Get service excellence
+- **POST** `/api/service-excellence` - Create service excellence
+- **PUT** `/api/service-excellence/{id}` - Update service excellence
+- **DELETE** `/api/service-excellence/{id}` - Delete service excellence
+- **GET** `/api/service-process` - Get service processes
+- **POST** `/api/service-process` - Create service process
+- **PUT** `/api/service-process/{id}` - Update service process
+- **DELETE** `/api/service-process/{id}` - Delete service process
 - **GET** `/api/qa` - Get Q&A/FAQ
+- **POST** `/api/qa` - Create Q&A
+- **PUT** `/api/qa/{id}` - Update Q&A
+- **DELETE** `/api/qa/{id}` - Delete Q&A
 
 ### 🌐 Website Content (`website-content.http`)
 - **GET** `/api/hero-section` - Get hero section

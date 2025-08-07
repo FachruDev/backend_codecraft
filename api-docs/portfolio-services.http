@@ -120,18 +120,25 @@ Authorization: Bearer {{adminToken}}
 Content-Type: application/json
 
 {
+  "menuName": {
+    "en": "Web Development",
+    "id": "Pengembangan Web"
+  },
   "title": {
-    "en": "Web Development Service",
-    "id": "Layanan Pengembangan Web"
+    "en": "Professional Web Development Services",
+    "id": "Layanan Pengembangan Web Profesional"
   },
-  "description": {
-    "en": "Complete web development solutions for businesses",
-    "id": "Solusi pengembangan web lengkap untuk bisnis"
+  "slogan": {
+    "en": "Building Digital Success",
+    "id": "Membangun Kesuksesan Digital"
   },
-  "price": 5000000,
-  "features": {
-    "en": ["Responsive Design", "SEO Optimization", "Admin Panel", "Payment Gateway"],
-    "id": ["Desain Responsif", "Optimasi SEO", "Panel Admin", "Gateway Pembayaran"]
+  "subtitle": {
+    "en": "Complete web development solutions for modern businesses",
+    "id": "Solusi pengembangan web lengkap untuk bisnis modern"
+  },
+  "content": {
+    "en": "<h2>Service Overview</h2><p>We provide comprehensive web development services...</p>",
+    "id": "<h2>Tinjauan Layanan</h2><p>Kami menyediakan layanan pengembangan web komprehensif...</p>"
   }
 }
 
@@ -145,18 +152,25 @@ Authorization: Bearer {{adminToken}}
 Content-Type: application/json
 
 {
-  "title": {
+  "menuName": {
     "en": "Premium Web Development",
     "id": "Pengembangan Web Premium"
   },
-  "description": {
-    "en": "Premium web development with advanced features",
-    "id": "Pengembangan web premium dengan fitur canggih"
+  "title": {
+    "en": "Premium Web Development Services",
+    "id": "Layanan Pengembangan Web Premium"
   },
-  "price": 7500000,
-  "features": {
-    "en": ["Responsive Design", "SEO Optimization", "Admin Panel", "Payment Gateway", "Analytics Dashboard"],
-    "id": ["Desain Responsif", "Optimasi SEO", "Panel Admin", "Gateway Pembayaran", "Dashboard Analitik"]
+  "slogan": {
+    "en": "Excellence in Digital Solutions",
+    "id": "Keunggulan dalam Solusi Digital"
+  },
+  "subtitle": {
+    "en": "Advanced web development with cutting-edge technologies",
+    "id": "Pengembangan web canggih dengan teknologi terdepan"
+  },
+  "content": {
+    "en": "<h2>Premium Service Features</h2><p>Our premium package includes advanced features...</p>",
+    "id": "<h2>Fitur Layanan Premium</h2><p>Paket premium kami mencakup fitur-fitur canggih...</p>"
   }
 }
 
@@ -270,18 +284,139 @@ Content-Type: application/json
   "icon": "https://example.com/icons/support.svg"
 }
 
+### 17.1. Get Service Excellence by ID
+# Method: GET
+# Endpoint: /api/service-excellence/{id}
+# Permission: Public
+# Description: Get specific service excellence details
+GET {{baseUrl}}/api/service-excellence/1
+
+### 17.2. Update Service Excellence
+# Method: PUT
+# Endpoint: /api/service-excellence/{id}
+# Permission: SERVICE_EXCELLENCE_EDIT
+# Description: Update existing service excellence
+PUT {{baseUrl}}/api/service-excellence/1
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "24/7 Premium Customer Support",
+    "id": "Dukungan Pelanggan Premium 24/7"
+  },
+  "description": {
+    "en": "Premium round-the-clock support with dedicated account manager",
+    "id": "Dukungan premium sepanjang waktu dengan manajer akun khusus"
+  },
+  "icon": "https://example.com/icons/premium-support.svg"
+}
+
+### 17.3. Delete Service Excellence
+# Method: DELETE
+# Endpoint: /api/service-excellence/{id}
+# Permission: SERVICE_EXCELLENCE_DELETE
+# Description: Delete service excellence
+DELETE {{baseUrl}}/api/service-excellence/2
+Authorization: Bearer {{adminToken}}
+
+### ================================
+# SERVICE PROCESS ENDPOINTS
+# ================================
+
+### 18. Get All Service Processes
+# Method: GET
+# Endpoint: /api/service-process
+# Permission: Public
+# Description: Get list of all service processes
+GET {{baseUrl}}/api/service-process
+
+### 19. Get Service Process by ID
+# Method: GET
+# Endpoint: /api/service-process/{id}
+# Permission: Public
+# Description: Get specific service process details
+GET {{baseUrl}}/api/service-process/1
+
+### 20. Create New Service Process
+# Method: POST
+# Endpoint: /api/service-process
+# Permission: SERVICE_PROCESS_CREATE
+# Description: Create a new service process step
+POST {{baseUrl}}/api/service-process
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "Discovery & Analysis",
+    "id": "Penemuan & Analisis"
+  },
+  "description": {
+    "en": "We analyze your business requirements and goals",
+    "id": "Kami menganalisis kebutuhan dan tujuan bisnis Anda"
+  },
+  "step": 1,
+  "icon": "https://example.com/icons/discovery.svg",
+  "duration": {
+    "en": "1-2 weeks",
+    "id": "1-2 minggu"
+  }
+}
+
+### 21. Update Service Process
+# Method: PUT
+# Endpoint: /api/service-process/{id}
+# Permission: SERVICE_PROCESS_EDIT
+# Description: Update existing service process
+PUT {{baseUrl}}/api/service-process/1
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "title": {
+    "en": "Enhanced Discovery & Analysis",
+    "id": "Penemuan & Analisis Mendalam"
+  },
+  "description": {
+    "en": "Comprehensive analysis of your business requirements and market research",
+    "id": "Analisis komprehensif kebutuhan bisnis dan riset pasar Anda"
+  },
+  "step": 1,
+  "icon": "https://example.com/icons/enhanced-discovery.svg",
+  "duration": {
+    "en": "2-3 weeks",
+    "id": "2-3 minggu"
+  }
+}
+
+### 22. Delete Service Process
+# Method: DELETE
+# Endpoint: /api/service-process/{id}
+# Permission: SERVICE_PROCESS_DELETE
+# Description: Delete service process
+DELETE {{baseUrl}}/api/service-process/2
+Authorization: Bearer {{adminToken}}
+
 ### ================================
 # Q&A ENDPOINTS
 # ================================
 
-### 18. Get All Q&A
+### 23. Get All Q&A
 # Method: GET
 # Endpoint: /api/qa
 # Permission: Public
 # Description: Get list of frequently asked questions
 GET {{baseUrl}}/api/qa
 
-### 19. Create New Q&A
+### 24. Get Q&A by ID
+# Method: GET
+# Endpoint: /api/qa/{id}
+# Permission: Public
+# Description: Get specific Q&A details
+GET {{baseUrl}}/api/qa/1
+
+### 25. Create New Q&A
 # Method: POST
 # Endpoint: /api/qa
 # Permission: QA_CREATE
@@ -300,6 +435,34 @@ Content-Type: application/json
     "id": "Biasanya 2-6 minggu tergantung kompleksitas dan kebutuhan"
   }
 }
+
+### 26. Update Q&A
+# Method: PUT
+# Endpoint: /api/qa/{id}
+# Permission: QA_EDIT
+# Description: Update existing Q&A
+PUT {{baseUrl}}/api/qa/1
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "question": {
+    "en": "How long does it take to develop a complete website?",
+    "id": "Berapa lama waktu yang dibutuhkan untuk mengembangkan website lengkap?"
+  },
+  "answer": {
+    "en": "Typically 2-8 weeks depending on complexity, features, and requirements",
+    "id": "Biasanya 2-8 minggu tergantung kompleksitas, fitur, dan kebutuhan"
+  }
+}
+
+### 27. Delete Q&A
+# Method: DELETE
+# Endpoint: /api/qa/{id}
+# Permission: QA_DELETE
+# Description: Delete Q&A item
+DELETE {{baseUrl}}/api/qa/2
+Authorization: Bearer {{adminToken}}
 
 ### ================================
 ### REQUEST/RESPONSE EXAMPLES
@@ -345,10 +508,11 @@ Content-Type: application/json
 # - content: object with language keys (en, id) - required
 #
 # Service:
+# - menuName: object with language keys (en, id) - required
 # - title: object with language keys (en, id) - required
-# - description: object with language keys (en, id) - required
-# - price: number - optional
-# - features: object with language keys containing arrays - optional
+# - slogan: object with language keys (en, id) - required
+# - subtitle: object with language keys (en, id) - required
+# - content: object with language keys (en, id) - required
 #
 # Sub-Service:
 # - title: object with language keys (en, id) - required
