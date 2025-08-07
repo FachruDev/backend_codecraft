@@ -67,7 +67,12 @@ export const AppPermissions = {
 
   ABOUT_OUR_EDIT: 'about_our.edit',
   WHY_WE_EDIT: 'why_we.edit',
+
+  CALL_TO_ACTION_VIEW: 'call_to_action.view',
+  CALL_TO_ACTION_CREATE: 'call_to_action.create',
   CALL_TO_ACTION_EDIT: 'call_to_action.edit',
+  CALL_TO_ACTION_DELETE: 'call_to_action.delete',
+  CALL_TO_ACTION_MANAGE: 'call_to_action.manage',
 
   ARTICLE_VIEW: 'article.view',
   ARTICLE_CREATE: 'article.create',
