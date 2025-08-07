@@ -35,6 +35,7 @@ import serviceSection from './routes/service/serviceSectionRoutes'
 import subService from './routes/service/subServiceRoutes'
 import achievement from './routes/achievementRoutes'
 import callToAction from './routes/callToActionRoutes'
+import client from './routes/clientRoutes'
 
 // Load env
 dotenv.config()
@@ -92,6 +93,7 @@ app.use('/api/service-section', serviceSection)
 app.use('/api/sub-service', subService)
 app.use('/api/achievement', achievement)
 app.use('/api/call-to-action', callToAction)
+app.use('/api/client', client)
 
 // 404 handler
 app.use(notFound)
