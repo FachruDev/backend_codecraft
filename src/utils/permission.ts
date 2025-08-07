@@ -24,8 +24,13 @@ export const AppPermissions = {
   PERMISSION_DELETE: 'permission.delete',
   PERMISSION_MANAGE: 'permission.manage',
 
-  HERO_SECTION_EDIT: 'hero_section.edit',
   ACHIEVEMENT_EDIT: 'achievement.edit',
+  ACHIEVEMENT_CREATE: 'achievement.create',
+  ACHIEVEMENT_DELETE: 'achievement.delete',
+  ACHIEVEMENT_VIEW: 'achievement.view',
+  ACHIEVEMENT_MANAGE: 'achievement.manage',
+
+  HERO_SECTION_EDIT: 'hero_section.edit',
   CLIENT_CREATE: 'client.create',
   CLIENT_EDIT: 'client.edit',
   CLIENT_DELETE: 'client.delete',
