@@ -38,6 +38,7 @@ import callToAction from './routes/callToActionRoutes'
 import client from './routes/clientRoutes'
 import contactForm from './routes/contactFormRoutes'
 import portfolio from './routes/portfolioRoutes'
+import seoMetadata from './routes/seoMetadataRoutes'
 
 // Load env
 dotenv.config()
@@ -98,6 +99,7 @@ app.use('/api/call-to-action', callToAction)
 app.use('/api/client', client)
 app.use('/api/contact-form', contactForm)
 app.use('/api/portfolio', portfolio)
+app.use('/api/seo-metadata', seoMetadata)
 
 // 404 handler
 app.use(notFound)
